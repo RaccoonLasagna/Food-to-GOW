@@ -76,10 +76,10 @@ stage z-layer:
 1: player"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 386.0
-offset_top = 8.0
-offset_right = 692.0
-offset_bottom = 57.0
+offset_left = 61.0
+offset_top = 54.0
+offset_right = 367.0
+offset_bottom = 103.0
 text = "The ONLY ACCESSIBLE ONE RIGHT NOW
 VVV"
 horizontal_alignment = 1
