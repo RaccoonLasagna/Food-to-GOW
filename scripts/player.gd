@@ -1,17 +1,24 @@
 extends CharacterBody2D
 
-@export var move_speed := 20000.0
-@export var sprite: Sprite2D
+@export var move_speed := 5000.0
+@export var sprite: AnimatedSprite2D
 @export var interact_area: Area2D
 @export var attachment_point: Node2D
 var interactable_items: Array = []
 var interactable_stations: Array = []
 var held_item: Node2D = null
 var last_move_dir: Vector2 = Vector2.DOWN
+var _current_anim := ""
 
 func _ready() -> void:
 	interact_area.area_entered.connect(add_to_interactable)
 	interact_area.area_exited.connect(remove_from_interactable)
+	
+func _play_anim(name: String) -> void:
+	if _current_anim == name: return
+	_current_anim = name
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(name):
+		sprite.play(name)
 
 func _physics_process(delta: float) -> void:
 	var input_dir = Vector2.ZERO
@@ -20,6 +27,11 @@ func _physics_process(delta: float) -> void:
 	if input_dir != Vector2.ZERO:
 		input_dir = input_dir.normalized()
 		last_move_dir = input_dir
+		_play_anim("walk")
+		if abs(input_dir.x) >= abs(input_dir.y):
+			sprite.flip_h = input_dir.x < 0.0
+	else:
+		_play_anim("idle")
 		
 	velocity = input_dir * move_speed * delta
 	move_and_slide()

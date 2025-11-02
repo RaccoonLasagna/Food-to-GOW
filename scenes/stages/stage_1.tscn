@@ -1,43 +1,153 @@
-[gd_scene load_steps=4 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=9 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/item.tscn" id="2_8q8ih"]
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/station.tscn" id="3_8q8ih"]
+[ext_resource type="Texture2D" uid="uid://dabha8j7tg1s" path="res://sprites/map/Kitchen_tiles.png" id="4_k45mu"]
+[ext_resource type="Texture2D" uid="uid://388a36k4t7ht" path="res://sprites/truck/truck_outside.png" id="5_l1pay"]
+[ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k45mu"]
+texture = ExtResource("4_k45mu")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 4, -8, 4, -8, -8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 4, -8, 4, -8, -8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 4, -8, 4, -8, -8)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 4, -8, 4, -8, -8)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 4, -8, 4, -8, -8)
+0:2/0 = 0
+0:2/0/y_sort_origin = -2
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -4, 8, -4, 1, -8, 1, -8, -8)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, 8)
+1:2/0/y_sort_origin = -10
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 8, -16, 8, -7, -8, -7)
+2:2/0 = 0
+2:2/0/texture_origin = Vector2i(0, 8)
+2:2/0/y_sort_origin = -10
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 8, -16, 8, -7, 4, -7, 4, 0, -8, 0)
+3:2/0 = 0
+3:2/0/texture_origin = Vector2i(0, 8)
+3:2/0/y_sort_origin = -10
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 8, -16, 8, -7, -8, -7)
+4:2/0 = 0
+4:2/0/texture_origin = Vector2i(0, 8)
+4:2/0/y_sort_origin = -10
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 8, -16, 8, -7, -8, -7)
+5:2/0 = 0
+5:2/0/texture_origin = Vector2i(0, 8)
+5:2/0/y_sort_origin = -10
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -16, 8, 0, -4, 0, -4, -7, -8, -7, -8, -16)
+6:2/0 = 0
+6:2/0/texture_origin = Vector2i(0, 8)
+6:2/0/y_sort_origin = -10
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 8, -16, 8, -7, -8, -7)
+0:3/0 = 0
+2:3/0 = 0
+2:3/0/texture_origin = Vector2i(0, 8)
+2:3/0/y_sort_origin = -10
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -16, 4, -16, 4, -6, -8, -6)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(3, -5, 3, 8, -8, 8, -8, -5)
+5:3/0 = 0
+5:3/0/texture_origin = Vector2i(0, 8)
+5:3/0/y_sort_origin = -10
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -16, 8, -16, 8, -6, -4, -6)
+6:3/0 = 0
+6:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -5, 8, 8, -3, 8, -3, -5)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8, -8, 0)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8, -8, -8, 3, -8, 3, 0)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8, -8, 0)
+5:4/0 = 0
+5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 8, 8, -8, 8, -8, 0)
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3, -8, 8, -8, 8, 8, -8, 8, -8, 0, -3, 0)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
+
+[sub_resource type="TileSet" id="TileSet_l1pay"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_k45mu")
 
 [node name="stage1" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = SubResource("TileSet_l1pay")
+format = 2
+layer_0/name = "Tables"
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(196603, 196609, 3, 262139, 196609, 4, 262140, 262145, 4, 262141, 262145, 4, 262142, 262145, 4, 262143, 327681, 4, 196611, 262145, 4, 196610, 131073, 4, 196612, 262145, 4, 196613, 393217, 4, 131077, 393217, 3, -5, 131073, 2, 65531, 131073, 3, -65536, 65537, 2, -65535, 196609, 2, -65534, 196609, 2, -65533, 262145, 2, -65532, 196609, 2, -65531, 327681, 2, 5, 327681, 3, -4, 393217, 2)
+layer_1/name = "Floor"
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(-65540, 196609, 1, -4, 262145, 0, 65532, 262145, 0, 131068, 262145, 0, 196604, 262145, 0, 262140, 262145, 0, -65539, 196609, 1, -3, 262145, 0, 65533, 262145, 0, 131069, 262145, 0, 196605, 262145, 0, 262141, 262145, 0, -65538, 196609, 1, -2, 262145, 0, 65534, 262145, 0, 131070, 262145, 0, 196606, 262145, 0, 262142, 262145, 0, -65537, 196609, 1, -1, 262145, 0, 65535, 262145, 0, 131071, 262145, 0, 196607, 262145, 0, 262143, 262145, 0, -131072, 196609, 1, -65536, 262145, 0, 0, 262145, 0, 65536, 262145, 0, 131072, 262145, 0, 196608, 262145, 0, -131071, 196609, 1, -65535, 262145, 0, 1, 262145, 0, 65537, 262145, 0, 131073, 262145, 0, 196609, 262145, 0, -131070, 196609, 1, -65534, 262145, 0, 2, 262145, 0, 65538, 262145, 0, 131074, 262145, 0, 196610, 262145, 0, -131069, 196609, 1, -65533, 262145, 0, 3, 262145, 0, 65539, 262145, 0, 131075, 262145, 0, 196611, 262145, 0, -131068, 196609, 1, -65532, 262145, 0, 4, 262145, 0, 65540, 262145, 0, 131076, 262145, 0, 196612, 262145, 0, -131067, 196609, 1, -65531, 262145, 0, 5, 262145, 0, 65541, 262145, 0, 131077, 262145, 0, 196613, 262145, 0, 65531, 262145, 0, -5, 262145, 0, 131067, 262145, 0, 196603, 262145, 0, 262139, 262145, 0, -65541, 196609, 1, -131077, 196609, 1, -131076, 196609, 1, -131075, 196609, 1, -131074, 196609, 1, -131073, 196609, 1, -196608, 196609, 1, -196607, 196609, 1, -196606, 196609, 1, -196605, 196609, 1, -196604, 196609, 1, -196603, 196609, 1, -262139, 196609, 1, -262140, 196609, 1, -262141, 196609, 1, -262142, 196609, 1, -262143, 196609, 1, -262144, 196609, 1, -196609, 196609, 1, -196610, 196609, 1, -196611, 196609, 1, -196612, 196609, 1, -196613, 196609, 1, 327674, 65537, 1, 327675, 65537, 1, 327676, 65537, 1, 327677, 65537, 1, 327678, 65537, 1, 327679, 65537, 1, 262144, 65537, 1, 262145, 65537, 1, 262146, 65537, 1, 262147, 65537, 1, 262148, 65537, 1, 262149, 65537, 1, 262150, 65537, 1, 196614, 65537, 1, 131078, 65537, 1, 65542, 65537, 1, 6, 65537, 1, -65530, 65537, 1, -131066, 65537, 1, -65542, 65537, 1, -6, 65537, 1, 65530, 65537, 1, 131066, 65537, 1, 196602, 65537, 1, 262138, 65537, 1)
 
 [node name="y-sort" type="Node2D" parent="."]
 y_sort_enabled = true
+scale = Vector2(0.1, 0.1)
 
 [node name="player" parent="y-sort" instance=ExtResource("1_cuow7")]
-position = Vector2(486, 228)
+position = Vector2(239.99997, 79.99999)
 
 [node name="Object" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(334, 340)
+position = Vector2(-246, 69)
 
 [node name="Object2" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(413, 337)
+position = Vector2(-167, 66)
 
 [node name="Object3" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(482, 346)
+position = Vector2(-98, 75)
 
 [node name="Object4" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(388, 419)
+position = Vector2(-192, 148)
 
 [node name="Object5" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(477, 400)
+position = Vector2(-103, 129)
 
 [node name="Object6" parent="y-sort" instance=ExtResource("2_8q8ih")]
-position = Vector2(328, 404)
+position = Vector2(-252, 133)
 
 [node name="station" parent="y-sort" instance=ExtResource("3_8q8ih")]
-position = Vector2(693, 227)
+position = Vector2(80, -160)
+
+[node name="station5" parent="y-sort" instance=ExtResource("3_8q8ih")]
+position = Vector2(880, 4.5474735e-13)
 
 [node name="station2" parent="y-sort" instance=ExtResource("3_8q8ih")]
-position = Vector2(795, 227)
+position = Vector2(240, -160)
 
 [node name="station3" parent="y-sort" instance=ExtResource("3_8q8ih")]
-position = Vector2(897, 227)
+position = Vector2(400, -160)
 
 [node name="station4" parent="y-sort" instance=ExtResource("3_8q8ih")]
-position = Vector2(999, 227)
+position = Vector2(720, -160)
+
+[node name="station6" parent="y-sort" instance=ExtResource("3_8q8ih")]
+position = Vector2(-559.9999, -160)
+
+[node name="TruckOutside" type="Sprite2D" parent="."]
+position = Vector2(-16, 16)
+texture = ExtResource("5_l1pay")
+
+[node name="TruckSide" type="Sprite2D" parent="."]
+visible = false
+top_level = true
+position = Vector2(-16, 16)
+texture = ExtResource("6_1tge3")

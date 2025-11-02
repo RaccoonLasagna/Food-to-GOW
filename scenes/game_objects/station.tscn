@@ -14,6 +14,7 @@ script = ExtResource("1_1pffa")
 attachment_point = NodePath("attachment_point")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -27.999998)
 scale = Vector2(0.0796875, 0.0796875)
 texture = ExtResource("1_lxjpi")
