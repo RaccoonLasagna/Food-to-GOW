@@ -66,16 +66,6 @@ func get_closest_interactable() -> Node2D:
 			closest_item = item
 	return closest_item
 
-func get_closest_station() -> Node2D:
-	var closest_station: Node2D = null
-	var closest_dist: float = INF
-	for station in interactable_stations:
-		var dist: float = self.global_position.distance_to(station.global_position)
-		if dist < closest_dist:
-			closest_dist = dist
-			closest_station = station
-	return closest_station
-
 func interact():
 	print("interact")
 	
