@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=36 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="2_8q8ih"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://02upx4l3voll" path="res://scenes/game_objects/food_objects/shortbread.tscn" id="8_bjuw2"]
 [ext_resource type="PackedScene" uid="uid://jk1gq7u5nltf" path="res://scenes/game_objects/stations/oven.tscn" id="10_mm8bn"]
 [ext_resource type="PackedScene" uid="uid://b8k4ggaydh62i" path="res://scenes/game_objects/stations/pot.tscn" id="11_f2dxg"]
+[ext_resource type="PackedScene" uid="uid://q1nxq13j86mb" path="res://scenes/game_objects/customer.tscn" id="12_1wruk"]
 [ext_resource type="PackedScene" uid="uid://c1q1akf8whlo6" path="res://scenes/game_objects/food_objects/potato.tscn" id="12_emlwg"]
 [ext_resource type="PackedScene" uid="uid://bl7ahneyk015j" path="res://scenes/game_objects/food_objects/haddock.tscn" id="13_eda8h"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
@@ -423,6 +424,10 @@ layer_2/tile_data = PackedInt32Array(-65540, 196609, 1, -4, 262145, 0, 65532, 26
 position = Vector2(0, 16)
 scale = Vector2(0.1, 0.1)
 
+[node name="customer" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(-59.000004, 99)
+scale = Vector2(0.1, 0.1)
+
 [node name="TruckOutside" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(-16, 16)
@@ -508,6 +513,26 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_gsa1y")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1wruk")
 icon = ExtResource("21_guvgb")
 icon_alignment = 1
+
+[node name="customer3" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(-83, 99)
+scale = Vector2(0.1, 0.1)
+
+[node name="customer2" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(-35.000004, 99)
+scale = Vector2(0.1, 0.1)
+
+[node name="customer4" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(9.999992, 98)
+scale = Vector2(0.1, 0.1)
+
+[node name="customer5" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(-11.000008, 101)
+scale = Vector2(0.1, 0.1)
+
+[node name="customer6" parent="." instance=ExtResource("12_1wruk")]
+position = Vector2(-114, 98)
+scale = Vector2(0.1, 0.1)
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasGroup/ExitButton" to="." method="_on_exit_button_pressed"]
