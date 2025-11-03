@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		interact()
-	print(interact_area.rotation)
 
 func add_to_interactable(area: Area2D):
 	var target_object = area.get_parent()
@@ -79,28 +78,30 @@ func get_closest_interactable() -> Node2D:
 	return closest_item
 
 func interact():
-	print("interact")
-	
 	if held_item == null: # no held item = pick one up
 		if interactable_items.is_empty():
 			return
 		held_item = get_closest_interactable()
+		var item_parent = held_item.get_parent()
+		if item_parent != get_parent(): # not the same parent = item in station
+			print("picking up item from station")
+			item_parent.get_parent().remove_item()
+		else:
+			print("picking up item from ground")
 		held_item.reparent(attachment_point)
 		held_item.global_position = attachment_point.global_position
 	else: # item: put it down on a station or floor
-		if !interactable_stations.is_empty(): # station found, try all stations sorted by distance
+		if !interactable_stations.is_empty():
 			var sorted_stations = interactable_stations.duplicate()
 			sorted_stations.sort_custom(func(a, b):
 				return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 			)
-			#var placed = false
 			for station in sorted_stations:
-				var station_attachment_point = station.attachment_point
-				if station_attachment_point.get_child_count() == 0:
-					held_item.reparent(station_attachment_point)
-					held_item.global_position = station_attachment_point.global_position
-					#placed = true
+				if station.can_place():
+					station.add_item(held_item)
+					held_item = null
 					break
+
 		else: # no stations, put it on the ground, maybe delete this
 			held_item.reparent(self.get_parent())
 		held_item = null

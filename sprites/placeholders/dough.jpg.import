@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xb5btbl7gjxb"
-path="res://.godot/imported/truk.png-9c78d3a1c8ff20626b969f0a46837cf6.ctex"
+uid="uid://d4lai7f4hgb4r"
+path="res://.godot/imported/dough.jpg-156a838f701029c2f78092a78393d72f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/truk.png"
-dest_files=["res://.godot/imported/truk.png-9c78d3a1c8ff20626b969f0a46837cf6.ctex"]
+source_file="res://sprites/placeholders/dough.jpg"
+dest_files=["res://.godot/imported/dough.jpg-156a838f701029c2f78092a78393d72f.ctex"]
 
 [params]
 
