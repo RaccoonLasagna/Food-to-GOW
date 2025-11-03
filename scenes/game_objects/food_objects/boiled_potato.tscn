@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c66rw8goqgeva"]
+
+[ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="1_yplh3"]
+[ext_resource type="Texture2D" uid="uid://io0koyowna2v" path="res://sprites/placeholders/boiled-potato.jpg" id="2_pepbn"]
+
+[node name="boiled_potato" instance=ExtResource("1_yplh3")]
+item_name = "boiled_potato"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.06535948, 0.09803922)
+texture = ExtResource("2_pepbn")
