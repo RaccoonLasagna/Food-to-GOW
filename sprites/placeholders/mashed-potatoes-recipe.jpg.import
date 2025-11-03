@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://unr06tc6kgf6"
-path="res://.godot/imported/table.jpg-3cec1e596c7cff4f99fe0d1bf005466c.ctex"
+uid="uid://jocolv804vqq"
+path="res://.godot/imported/mashed-potatoes-recipe.jpg-aceeed945745363659565ff2c5261cb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/table.jpg"
-dest_files=["res://.godot/imported/table.jpg-3cec1e596c7cff4f99fe0d1bf005466c.ctex"]
+source_file="res://sprites/placeholders/mashed-potatoes-recipe.jpg"
+dest_files=["res://.godot/imported/mashed-potatoes-recipe.jpg-aceeed945745363659565ff2c5261cb8.ctex"]
 
 [params]
 

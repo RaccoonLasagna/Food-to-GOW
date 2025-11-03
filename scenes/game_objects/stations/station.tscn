@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dyika5mde3an4"]
 
-[ext_resource type="Script" uid="uid://bkimpjon43jla" path="res://scripts/station.gd" id="1_1pffa"]
-[ext_resource type="Texture2D" uid="uid://unr06tc6kgf6" path="res://sprites/table.jpg" id="1_lxjpi"]
+[ext_resource type="Script" uid="uid://bkimpjon43jla" path="res://scenes/game_objects/stations/station.gd" id="1_1pffa"]
+[ext_resource type="Texture2D" uid="uid://unr06tc6kgf6" path="res://sprites/placeholders/table.jpg" id="1_lxjpi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d5htc"]
 size = Vector2(81, 21)
@@ -10,7 +10,9 @@ size = Vector2(81, 21)
 size = Vector2(102, 41)
 
 [node name="station" type="StaticBody2D" node_paths=PackedStringArray("attachment_point")]
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_1pffa")
+station_name = "base_station"
 attachment_point = NodePath("attachment_point")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

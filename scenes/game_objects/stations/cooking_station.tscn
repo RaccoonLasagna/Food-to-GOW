@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1krcen2b33p4"]
+
+[ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_o0tti"]
+[ext_resource type="Script" uid="uid://csp42bu2mwoe" path="res://scenes/game_objects/stations/cooking_station.gd" id="2_j6b2m"]
+
+[node name="cooking_station" node_paths=PackedStringArray("timer_node") instance=ExtResource("1_o0tti")]
+script = ExtResource("2_j6b2m")
+burnable = false
+timer_node = NodePath("Timer")
+station_name = "base_cooking_station"
+max_attachment = 3
+
+[node name="CollisionShape2D" parent="." index="1"]
+debug_color = Color(1, 0, 0.8156863, 0.41960785)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(1, 0, 0.8156863, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
