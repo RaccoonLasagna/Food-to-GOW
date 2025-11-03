@@ -7,7 +7,6 @@
 station_name = "pot"
 
 [node name="Sprite2D" parent="." index="0"]
-visible = true
 position = Vector2(0, -50)
 scale = Vector2(0.040000003, 0.0384)
 texture = ExtResource("2_emuvr")
