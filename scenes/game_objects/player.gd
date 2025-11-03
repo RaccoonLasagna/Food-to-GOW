@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var move_speed := 5000.0
+@export var move_speed := 50.0
 @export var sprite: AnimatedSprite2D
 @export var interact_area: Area2D
 @export var attachment_point: Node2D
@@ -27,13 +27,15 @@ func _physics_process(delta: float) -> void:
 	if input_dir != Vector2.ZERO:
 		input_dir = input_dir.normalized()
 		last_move_dir = input_dir
-		_play_anim("walk")
-		if abs(input_dir.x) >= abs(input_dir.y):
-			sprite.flip_h = input_dir.x < 0.0
+		if abs(input_dir.x) > abs(input_dir.y):
+			_play_anim("walk_side")
+			sprite.flip_h = input_dir.x < 0
+		else:
+			_play_anim("walk_up" if input_dir.y < 0 else "walk_down")
 	else:
 		_play_anim("idle")
 		
-	velocity = input_dir * move_speed * delta
+	velocity = input_dir * move_speed
 	move_and_slide()
 	
 	if abs(last_move_dir.x) > abs(last_move_dir.y):
