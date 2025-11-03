@@ -54,6 +54,11 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		interact()
+	
+	if Input.is_action_just_pressed("use"):
+		var station = get_closest_station()
+		if station and station.has_method("chop"):
+			station.chop()
 
 func add_to_interactable(area: Area2D):
 	var target_object = area.get_parent()
@@ -79,8 +84,19 @@ func get_closest_interactable() -> Node2D:
 			closest_item = item
 	return closest_item
 
+func get_closest_station() -> Node2D:
+	var closest_station: Node2D = null
+	var closest_dist: float = INF
+	for station in interactable_stations:
+		var dist: float = self.global_position.distance_to(station.global_position)
+		if dist < closest_dist:
+			closest_dist = dist
+			closest_station = station
+	return closest_station
+
+
 func interact():
-	if held_item == null: # no held item = pick one up
+	if held_item == null: # no held item = pick one up	
 		if interactable_items.is_empty():
 			return
 		held_item = get_closest_interactable()
@@ -98,12 +114,36 @@ func interact():
 			sorted_stations.sort_custom(func(a, b):
 				return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 			)
+			var recipe_manager = RecipeManager.new()
+			for station in sorted_stations:
+				if station.attachment_point.get_child_count() > 0:
+					var existing_item = station.attachment_point.get_child(0)
+					var recipe = recipe_manager.get_recipe_for(
+						"mix", [
+						existing_item.item_name.to_lower(),
+						held_item.item_name.to_lower()
+						]
+					)
+					if recipe.size() > 0:
+						var existing_scale = existing_item.scale
+						existing_item.free()
+						held_item.free()
+						var result_scene = load("res://scenes/game_objects/food_objects/item.tscn")
+						var result_item = result_scene.instantiate()
+						result_item.scale = existing_scale
+						result_item.item_name = recipe["output"]
+						result_item.update_texture()
+						station.attachment_point.add_child(result_item)
+						result_item.global_position = station.attachment_point.global_position
+						held_item = null
+						recipe_manager.queue_free()
+						return
 			for station in sorted_stations:
 				if station.can_place():
 					station.add_item(held_item)
 					held_item = null
-					break
-
-		else: # no stations, put it on the ground, maybe delete this
-			held_item.reparent(self.get_parent())
+					recipe_manager.queue_free()
+					return
+			recipe_manager.queue_free()
+		held_item.reparent(self.get_parent())
 		held_item = null

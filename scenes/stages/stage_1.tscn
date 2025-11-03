@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://q33ekb0g8iq1" path="res://sprites/map/Scene2.png" id="3_74ofu"]
 [ext_resource type="Texture2D" uid="uid://wbropl03sglx" path="res://sprites/map/scene3.png" id="4_ao1si"]
 [ext_resource type="Texture2D" uid="uid://dabha8j7tg1s" path="res://sprites/map/Kitchen_tiles.png" id="4_k45mu"]
+[ext_resource type="PackedScene" uid="uid://swhwo42iwhm0" path="res://scenes/game_objects/stations/bin.tscn" id="5_f2dxg"]
 [ext_resource type="Texture2D" uid="uid://388a36k4t7ht" path="res://sprites/truck/truck_outside.png" id="5_l1pay"]
 [ext_resource type="Texture2D" uid="uid://be6ahs0a7vcw5" path="res://sprites/map/scene4.png" id="5_onih3"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
@@ -375,6 +376,7 @@ autoplay = "open_scene"
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -10
+position = Vector2(0, 36)
 texture = ExtResource("14_eda8h")
 
 [node name="stations" type="Node2D" parent="."]
@@ -384,22 +386,32 @@ visible = false
 position = Vector2(8, -16)
 
 [node name="station5" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(88, 4.5474736e-14)
-
-[node name="station2" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(24, -16)
-
-[node name="station3" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(40, -16)
+position = Vector2(90, 3.3881318e-21)
 
 [node name="station6" parent="stations" instance=ExtResource("3_8q8ih")]
 position = Vector2(-55.99999, -16)
 
-[node name="oven" parent="stations" instance=ExtResource("10_mm8bn")]
-position = Vector2(55.999996, -15.999999)
+[node name="pot" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(72, -15.999999)
+station_name = "pot"
 
-[node name="pot" parent="stations" instance=ExtResource("11_f2dxg")]
-position = Vector2(72, -16)
+[node name="oven" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(55.999996, -15.999999)
+burnable = true
+station_name = "oven"
+max_attachment = 1
+
+[node name="deep_fryer" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(23.999998, -15.999999)
+burnable = true
+station_name = "deep_fryer"
+max_attachment = 1
+
+[node name="chopping_board" parent="stations" instance=ExtResource("10_mm8bn")]
+position = Vector2(-9.000001, 62.999996)
+
+[node name="bin" parent="stations" instance=ExtResource("5_f2dxg")]
+position = Vector2(-40.000004, -13)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)
@@ -438,32 +450,40 @@ visible = false
 z_index = 1
 texture = ExtResource("6_1tge3")
 
-[node name="item" parent="." instance=ExtResource("2_8q8ih")]
+[node name="haddock" parent="." instance=ExtResource("2_8q8ih")]
 position = Vector2(-54, 12.999999)
+item_name = "haddock"
 
-[node name="dough" parent="." instance=ExtResource("6_relhn")]
-position = Vector2(-38.999996, 12.999999)
+[node name="fried fish" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(6.999996, 26)
+item_name = "fried_fish"
 
-[node name="shortbread" parent="." instance=ExtResource("8_bjuw2")]
-position = Vector2(-25.999998, 13.999999)
+[node name="potato" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-23.000002, 28)
+item_name = "potato"
 
-[node name="burnt food" parent="." instance=ExtResource("7_bjuw2")]
-position = Vector2(-13.999999, 14.999999)
+[node name="chips" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(6.999998, 37)
+item_name = "chips"
 
 [node name="potato" parent="." instance=ExtResource("12_emlwg")]
 position = Vector2(-54.999996, 30.999998)
 
-[node name="potato2" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-48.000004, 38.999996)
+[node name="fried fish3" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(31, 26)
+item_name = "fried_fish"
 
-[node name="potato3" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-34, 32.999996)
+[node name="chips3" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(31, 37)
+item_name = "chips"
 
-[node name="haddock" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-21.999998, 32.999996)
+[node name="fried fish4" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(43, 26)
+item_name = "fried_fish"
 
-[node name="haddock2" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-11.000001, 39.000004)
+[node name="chips4" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(43, 37)
+item_name = "chips"
 
 [node name="haddock3" parent="." instance=ExtResource("13_eda8h")]
 position = Vector2(-2.000001, 29)
