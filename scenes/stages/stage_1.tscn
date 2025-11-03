@@ -1,19 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=15 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="2_8q8ih"]
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="3_8q8ih"]
 [ext_resource type="Texture2D" uid="uid://dabha8j7tg1s" path="res://sprites/map/Kitchen_tiles.png" id="4_k45mu"]
+[ext_resource type="PackedScene" uid="uid://swhwo42iwhm0" path="res://scenes/game_objects/stations/bin.tscn" id="5_f2dxg"]
 [ext_resource type="Texture2D" uid="uid://388a36k4t7ht" path="res://sprites/truck/truck_outside.png" id="5_l1pay"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
 [ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
-[ext_resource type="PackedScene" uid="uid://bk45r03ldcu2p" path="res://scenes/game_objects/food_objects/dough.tscn" id="6_relhn"]
-[ext_resource type="PackedScene" uid="uid://d1ef3nr2yosjr" path="res://scenes/game_objects/food_objects/burnt_food.tscn" id="7_bjuw2"]
-[ext_resource type="PackedScene" uid="uid://02upx4l3voll" path="res://scenes/game_objects/food_objects/shortbread.tscn" id="8_bjuw2"]
-[ext_resource type="PackedScene" uid="uid://jk1gq7u5nltf" path="res://scenes/game_objects/stations/oven.tscn" id="10_mm8bn"]
-[ext_resource type="PackedScene" uid="uid://b8k4ggaydh62i" path="res://scenes/game_objects/stations/pot.tscn" id="11_f2dxg"]
-[ext_resource type="PackedScene" uid="uid://c1q1akf8whlo6" path="res://scenes/game_objects/food_objects/potato.tscn" id="12_emlwg"]
-[ext_resource type="PackedScene" uid="uid://bl7ahneyk015j" path="res://scenes/game_objects/food_objects/haddock.tscn" id="13_eda8h"]
+[ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="9_bjuw2"]
+[ext_resource type="PackedScene" uid="uid://csxqoq1gy4jqc" path="res://scenes/game_objects/stations/chopping_board.tscn" id="10_mm8bn"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twvrt"]
@@ -117,6 +113,7 @@ y_sort_enabled = true
 
 [node name="Scene1" type="Sprite2D" parent="."]
 z_index = -10
+position = Vector2(0, 36)
 texture = ExtResource("14_eda8h")
 
 [node name="stations" type="Node2D" parent="."]
@@ -125,26 +122,36 @@ texture = ExtResource("14_eda8h")
 position = Vector2(8, -16)
 
 [node name="station5" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(88, 4.5474736e-14)
-
-[node name="station2" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(24, -16)
-
-[node name="station3" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(40, -16)
+position = Vector2(90, 3.3881318e-21)
 
 [node name="station6" parent="stations" instance=ExtResource("3_8q8ih")]
 position = Vector2(-55.99999, -16)
 
-[node name="oven" parent="stations" instance=ExtResource("10_mm8bn")]
-position = Vector2(55.999996, -15.999999)
+[node name="pot" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(72, -15.999999)
+station_name = "pot"
 
-[node name="pot" parent="stations" instance=ExtResource("11_f2dxg")]
-position = Vector2(72, -16)
+[node name="oven" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(55.999996, -15.999999)
+burnable = true
+station_name = "oven"
+max_attachment = 1
+
+[node name="deep_fryer" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(23.999998, -15.999999)
+burnable = true
+station_name = "deep_fryer"
+max_attachment = 1
+
+[node name="chopping_board" parent="stations" instance=ExtResource("10_mm8bn")]
+position = Vector2(-9.000001, 62.999996)
+
+[node name="bin" parent="stations" instance=ExtResource("5_f2dxg")]
+position = Vector2(-40.000004, -13)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -172,36 +179,62 @@ top_level = true
 position = Vector2(-16, 16)
 texture = ExtResource("6_1tge3")
 
-[node name="item" parent="." instance=ExtResource("2_8q8ih")]
+[node name="haddock" parent="." instance=ExtResource("2_8q8ih")]
 position = Vector2(-54, 12.999999)
+item_name = "haddock"
 
-[node name="dough" parent="." instance=ExtResource("6_relhn")]
-position = Vector2(-38.999996, 12.999999)
+[node name="fried fish" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(6.999996, 26)
+item_name = "fried_fish"
 
-[node name="shortbread" parent="." instance=ExtResource("8_bjuw2")]
-position = Vector2(-25.999998, 13.999999)
+[node name="potato" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-23.000002, 28)
+item_name = "potato"
 
-[node name="burnt food" parent="." instance=ExtResource("7_bjuw2")]
-position = Vector2(-13.999999, 14.999999)
+[node name="chips" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(6.999998, 37)
+item_name = "chips"
+
+[node name="fried fish2" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(19, 26)
+item_name = "fried_fish"
+
+[node name="chips2" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(19, 37)
+item_name = "chips"
+
+[node name="fried fish3" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(31, 26)
+item_name = "fried_fish"
+
+[node name="chips3" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(31, 37)
+item_name = "chips"
+
+[node name="fried fish4" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(43, 26)
+item_name = "fried_fish"
+
+[node name="chips4" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(43, 37)
+item_name = "chips"
+
+[node name="fried fish5" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(55, 27)
+item_name = "fried_fish"
+
+[node name="chips5" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(55, 38)
+item_name = "chips"
+
+[node name="ox_bung" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-46, 28)
+item_name = "ox_bung"
+
+[node name="pluck" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-36, 40)
+item_name = "pluck"
 
 [node name="player" parent="." instance=ExtResource("1_cuow7")]
 position = Vector2(-8.000001, 0)
 scale = Vector2(0.1, 0.1)
-
-[node name="potato" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-54.999996, 30.999998)
-
-[node name="potato2" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-48.000004, 38.999996)
-
-[node name="potato3" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-34, 32.999996)
-
-[node name="haddock" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-21.999998, 32.999996)
-
-[node name="haddock2" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-11.000001, 39.000004)
-
-[node name="haddock3" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-2.000001, 29)
