@@ -20,6 +20,7 @@ map_nodes_group = NodePath("map_nodes")
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.99999994, 1)
 zoom = Vector2(1.28, 1.28)
+process_callback = 0
 
 [node name="Player" type="Sprite2D" parent="."]
 z_index = 1
@@ -105,7 +106,7 @@ offset_right = 476.0
 offset_bottom = 273.0
 color = Color(0, 0, 0, 0.3137255)
 
-[node name="Button" type="Button" parent="CanvasGroup"]
+[node name="StartButton" type="Button" parent="CanvasGroup"]
 offset_left = -60.000004
 offset_top = -25.0
 offset_right = 55.999996
@@ -113,10 +114,11 @@ offset_bottom = 24.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_2lpho")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_nakos")
 icon = ExtResource("6_2lpho")
+icon_alignment = 1
 
 [node name="Logo" type="Sprite2D" parent="CanvasGroup"]
 z_index = 1
 scale = Vector2(0.99999994, 1)
 texture = ExtResource("5_2klcf")
 
-[connection signal="pressed" from="CanvasGroup/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasGroup/StartButton" to="." method="_on_button_pressed"]

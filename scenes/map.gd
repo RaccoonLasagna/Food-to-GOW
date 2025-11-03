@@ -6,13 +6,16 @@ var map_position := 0
 var player_movement_duration := 0.2
 var stages = "stage_1"
 var last_dir := 0  # +1 right, -1 left, 0 none
-var start = false
 
 func _ready() -> void:
-	pass
+	if Global.started:
+		$CanvasGroup.visible = false
+		map_position = Global.player_position
+		var target_node = map_nodes[map_position]
+		player.global_position = target_node.global_position
 
 func _process(delta: float) -> void:
-	if not start:
+	if not Global.started:
 		return
 		
 	var poschange := false
@@ -34,6 +37,7 @@ func _process(delta: float) -> void:
 		var stage_name = stages
 		if stage_name != null:
 			Global.selected_map_index = map_position
+			Global.player_position = map_position
 			var stage_file = stage_name_format % stage_name
 			get_tree().change_scene_to_file(stage_file)
 
@@ -52,7 +56,6 @@ func enable_process_mode():
 func _is_skip_node(n: Node) -> bool:
 	return n.name.to_lower().contains("skip")
 
-
 func _on_button_pressed() -> void:
 	$CanvasGroup.visible = false
-	start = true
+	Global.started = true

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var move_speed := 50.0
+@export var move_speed := 4000.0
 @export var sprite: AnimatedSprite2D
 @export var interact_area: Area2D
 @export var attachment_point: Node2D
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_play_anim("idle")
 		
-	velocity = input_dir * move_speed
+	velocity = input_dir * move_speed * delta
 	move_and_slide()
 	
 	if abs(last_move_dir.x) > abs(last_move_dir.y):
