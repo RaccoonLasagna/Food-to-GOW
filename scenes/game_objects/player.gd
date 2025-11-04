@@ -10,6 +10,8 @@ var held_item: Node2D = null
 var last_move_dir: Vector2 = Vector2.DOWN
 var _current_anim := ""
 
+var fridge: Station = null
+
 func _ready() -> void:
 	interact_area.area_entered.connect(add_to_interactable)
 	interact_area.area_exited.connect(remove_from_interactable)
@@ -21,42 +23,69 @@ func _play_anim(name: String) -> void:
 		sprite.play(name)
 
 func _physics_process(delta: float) -> void:
-	var input_dir = Vector2.ZERO
-	input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	input_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	if input_dir != Vector2.ZERO:
-		input_dir = input_dir.normalized()
-		last_move_dir = input_dir
-		_play_anim("walk")
-		if abs(input_dir.x) >= abs(input_dir.y):
-			sprite.flip_h = input_dir.x < 0.0
-	else:
-		_play_anim("idle")
+	if fridge == null:
+		var input_dir = Vector2.ZERO
+		input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		input_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+		if input_dir != Vector2.ZERO:
+			input_dir = input_dir.normalized()
+			last_move_dir = input_dir
+			_play_anim("walk")
+			if abs(input_dir.x) >= abs(input_dir.y):
+				sprite.flip_h = input_dir.x < 0.0
+		else:
+			_play_anim("idle")
+			
+		velocity = input_dir * move_speed * delta
+		move_and_slide()
 		
-	velocity = input_dir * move_speed * delta
-	move_and_slide()
-	
-	if abs(last_move_dir.x) > abs(last_move_dir.y):
-		if last_move_dir.x > 0:
-			interact_area.rotation_degrees = 270
+		if abs(last_move_dir.x) > abs(last_move_dir.y):
+			if last_move_dir.x > 0:
+				interact_area.rotation_degrees = 270
+			else:
+				interact_area.rotation_degrees = 90
 		else:
-			interact_area.rotation_degrees = 90
+			if last_move_dir.y > 0:
+				interact_area.rotation_degrees = 0
+			else:
+				interact_area.rotation_degrees = 180
+		
+		if held_item:
+			held_item.global_rotation_degrees = 0
+		
+		if Input.is_action_just_pressed("interact"):
+			interact()
+		
+		if Input.is_action_just_pressed("use"):
+			var station = get_closest_station()
+			if station and station.has_method("chop"):
+				station.chop()	
 	else:
-		if last_move_dir.y > 0:
-			interact_area.rotation_degrees = 0
-		else:
-			interact_area.rotation_degrees = 180
-	
+		if Input.is_action_just_pressed("left"):
+			fridge.previous()
+		if Input.is_action_just_pressed("right"):
+			fridge.next()
+		if Input.is_action_just_pressed("use"):
+			fridge.toggle()
+			fridge = null
+		if Input.is_action_just_pressed("interact"):
+			var ingredient_name = fridge.ingredients[fridge.index]
+			var item_scene = load("res://scenes/game_objects/food_objects/item.tscn")
+			var new_item = item_scene.instantiate()
+			get_tree().current_scene.add_child(new_item)
+			new_item.item_name = ingredient_name
+			new_item.update_texture()
+			new_item.reparent(attachment_point)
+			new_item.global_position = attachment_point.global_position
+			held_item = new_item
+			fridge.toggle()
+			fridge = null
+			print("taking out ", ingredient_name)
+			print("ingredient position ",new_item.global_position)
+	print(attachment_point)
 	if held_item:
-		held_item.global_rotation_degrees = 0
-	
-	if Input.is_action_just_pressed("interact"):
-		interact()
-	
-	if Input.is_action_just_pressed("use"):
-		var station = get_closest_station()
-		if station and station.has_method("chop"):
-			station.chop()
+		print(held_item.get_parent())
+		print(held_item.global_position)
 
 func add_to_interactable(area: Area2D):
 	var target_object = area.get_parent()
@@ -92,11 +121,14 @@ func get_closest_station() -> Node2D:
 			closest_station = station
 	return closest_station
 
-
 func interact():
-	if held_item == null: # no held item = pick one up	
+	if held_item == null: # no held item = pick one up or fridge
 		if interactable_items.is_empty():
-			return
+			for station in interactable_stations:
+				if station.station_name == "fridge":
+					station.toggle()
+					fridge = station
+					return
 		held_item = get_closest_interactable()
 		var item_parent = held_item.get_parent()
 		if item_parent != get_parent(): # not the same parent = item in station
