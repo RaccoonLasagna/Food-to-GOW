@@ -167,9 +167,10 @@ func interact():
 		if !held_item:
 			return
 		var item_parent = held_item.get_parent()
+		
 		if item_parent != get_parent(): # not the same parent = item in station
 			print("picking up item from station")
-			item_parent.get_parent().remove_item()
+			item_parent.get_parent().remove_item(self)
 			
 		held_item.reparent(attachment_point)
 		

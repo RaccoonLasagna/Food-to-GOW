@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://q33ekb0g8iq1" path="res://sprites/map/Scene2.png" id="3_74ofu"]
 [ext_resource type="Texture2D" uid="uid://wbropl03sglx" path="res://sprites/map/scene3.png" id="4_ao1si"]
 [ext_resource type="Texture2D" uid="uid://dabha8j7tg1s" path="res://sprites/map/Kitchen_tiles.png" id="4_k45mu"]
-[ext_resource type="PackedScene" uid="uid://swhwo42iwhm0" path="res://scenes/game_objects/stations/bin.tscn" id="5_f2dxg"]
+[ext_resource type="PackedScene" path="res://scenes/game_objects/stations/bin.tscn" id="5_f2dxg"]
 [ext_resource type="Texture2D" uid="uid://388a36k4t7ht" path="res://sprites/truck/truck_outside.png" id="5_l1pay"]
 [ext_resource type="Texture2D" uid="uid://be6ahs0a7vcw5" path="res://sprites/map/scene4.png" id="5_onih3"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
