@@ -28,6 +28,7 @@ func _play_anim(name: String) -> void:
 		sprite.play(name)
 
 func _physics_process(delta: float) -> void:
+	print(held_item)
 	if !fridge:
 		var input_dir = Vector2.ZERO
 		input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
