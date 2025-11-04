@@ -6,11 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l2ofb"]
 size = Vector2(40, 40)
 
-[node name="item" type="Node2D" node_paths=PackedStringArray("sprite")]
+[node name="item" type="Node2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_85q6t")
 item_name = "base_item"
-sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3125, 0.3125)

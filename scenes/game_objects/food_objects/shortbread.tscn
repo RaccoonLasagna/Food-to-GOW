@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://02upx4l3voll"]
+
+[ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="1_2iinj"]
+[ext_resource type="Texture2D" uid="uid://cv1dyofsmekqw" path="res://sprites/placeholders/shortbread.jpg" id="2_ef6j6"]
+
+[node name="shortbread" instance=ExtResource("1_2iinj")]
+item_name = "shortbread"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.019836416, 0.029761896)
+texture = ExtResource("2_ef6j6")

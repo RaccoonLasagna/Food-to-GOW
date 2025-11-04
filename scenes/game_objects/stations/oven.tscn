@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://jk1gq7u5nltf"]
+
+[ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="1_3665v"]
+
+[node name="oven" instance=ExtResource("1_3665v")]
+burnable = true
+station_name = "oven"
+
+[node name="CollisionShape2D" parent="." index="1"]
+debug_color = Color(1, 0.5058824, 0, 0.41960785)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(1, 0.5058824, 0, 0.41960785)
