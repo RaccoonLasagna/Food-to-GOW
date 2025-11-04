@@ -203,6 +203,7 @@ func interact():
 						result_item.scale = existing_scale
 						result_item.item_name = recipe["output"]
 						result_item.sprite.scale = Vector2(3, 3)
+						result_item._use_sheet() 
 						result_item._set_item_frame(recipe["output"])
 						station.attachment_point.add_child(result_item)
 						result_item.global_position = station.attachment_point.global_position

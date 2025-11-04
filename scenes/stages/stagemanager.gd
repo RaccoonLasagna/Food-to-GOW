@@ -52,6 +52,8 @@ func _on_exit_button_pressed() -> void:
 	get_tree().paused = false
 	$PauseButton.disabled = true
 	$CanvasGroup.visible = false
+	$RecipeButton.visible = false
+	$stations.free()
 	if $SceneAnimation and $SceneAnimation.has_animation("out_scene"):
 		$SceneAnimation.play("out_scene")
 		await $SceneAnimation.animation_finished

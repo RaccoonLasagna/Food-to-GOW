@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bgae6l0pehn4e" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="Texture2D" uid="uid://dnlnav6v0pke4" path="res://sprites/truck/smalltruck.png" id="2_0cso3"]
-[ext_resource type="Texture2D" uid="uid://c4pl31b4jaims" path="res://icon.svg" id="3_2klcf"]
 [ext_resource type="Texture2D" uid="uid://dqikl32w4rgl0" path="res://sprites/map/map.png" id="4_0cso3"]
+[ext_resource type="Texture2D" uid="uid://n7ccf7ta0pxk" path="res://sprites/map/pin.png" id="4_2lpho"]
 [ext_resource type="Texture2D" uid="uid://b18rg54ld077s" path="res://sprites/ui/logo.png" id="5_2klcf"]
 [ext_resource type="Texture2D" uid="uid://dsf6roiyfw4wo" path="res://sprites/ui/start.png" id="6_2lpho"]
 
@@ -37,15 +37,13 @@ texture = ExtResource("4_0cso3")
 position = Vector2(-260, -97)
 
 [node name="Sprite2D" type="Sprite2D" parent="map_nodes/map_node_0"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("3_2klcf")
+texture = ExtResource("4_2lpho")
 
 [node name="map_node_1" type="Node2D" parent="map_nodes"]
 position = Vector2(-265, -11)
 
 [node name="Sprite2D" type="Sprite2D" parent="map_nodes/map_node_1"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("3_2klcf")
+texture = ExtResource("4_2lpho")
 
 [node name="skip1-2" type="Node2D" parent="map_nodes"]
 position = Vector2(-387, 143)
@@ -54,8 +52,7 @@ position = Vector2(-387, 143)
 position = Vector2(-188, 149)
 
 [node name="Sprite2D" type="Sprite2D" parent="map_nodes/map_node_2"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("3_2klcf")
+texture = ExtResource("4_2lpho")
 
 [node name="skip2-3" type="Node2D" parent="map_nodes"]
 position = Vector2(-158, 53)
@@ -64,8 +61,7 @@ position = Vector2(-158, 53)
 position = Vector2(111, -61)
 
 [node name="Sprite2D" type="Sprite2D" parent="map_nodes/map_node_3"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("3_2klcf")
+texture = ExtResource("4_2lpho")
 
 [node name="skip3-4" type="Node2D" parent="map_nodes"]
 position = Vector2(209, 13)
@@ -74,8 +70,7 @@ position = Vector2(209, 13)
 position = Vector2(235, 96)
 
 [node name="Sprite2D" type="Sprite2D" parent="map_nodes/map_node_4"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("3_2klcf")
+texture = ExtResource("4_2lpho")
 
 [node name="note-to-self" type="Label" parent="."]
 offset_left = -1142.0
@@ -120,5 +115,51 @@ icon_alignment = 1
 z_index = 1
 scale = Vector2(0.99999994, 1)
 texture = ExtResource("5_2klcf")
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 146.0
+offset_top = 120.0
+offset_right = 371.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Wellpark brewery"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="."]
+offset_left = -6.0
+offset_top = -118.0
+offset_right = 219.0
+offset_bottom = -90.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "The glasgow necropolis"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = -158.0
+offset_top = 126.0
+offset_right = 5.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Riverside museum"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -239.0
+offset_top = -37.0
+offset_right = -82.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Kelvingrove park"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -394.0
+offset_top = -149.0
+offset_right = -237.0
+offset_bottom = -121.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Botanic gardens"
 
 [connection signal="pressed" from="CanvasGroup/StartButton" to="." method="_on_button_pressed"]

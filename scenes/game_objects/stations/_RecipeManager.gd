@@ -89,6 +89,22 @@ var recipes = {
 			"ingredients": ["minced_pluck", "ox_bung"],
 			"output": "raw_haggis",	
 		},
+		{
+			"ingredients": ["cooked_haggis", "tatties"],
+			"output": "cooked_haggis_and_tatties",	
+		},
+		{
+			"ingredients": ["cooked_haggis", "neeps"],
+			"output": "cooked_haggis_and_neeps",	
+		},
+		{
+			"ingredients": ["cooked_haggis_and_tatties", "neeps"],
+			"output": "cooked_haggis_neeps_and_tatties",	
+		},
+		{
+			"ingredients": ["cooked_haggis_and_neeps", "tatties"],
+			"output": "cooked_haggis_neeps_and_tatties",	
+		},
 	]
 }
 

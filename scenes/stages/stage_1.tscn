@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=44 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/stagemanager.gd" id="2_twvrt"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://be6ahs0a7vcw5" path="res://sprites/map/scene4.png" id="5_onih3"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
 [ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
+[ext_resource type="Texture2D" uid="uid://bp7unjvtcj0nm" path="res://sprites/map/scene5.png" id="6_1tlve"]
 [ext_resource type="PackedScene" uid="uid://bf285xaorlur1" path="res://scenes/game_objects/stations/fridge.tscn" id="6_f2dxg"]
 [ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="9_bjuw2"]
 [ext_resource type="PackedScene" uid="uid://ueyucly8h4hg" path="res://scenes/game_objects/stations/oven.tscn" id="10_mm8bn"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bkknhwgql8blc" path="res://scenes/game_objects/stations/chopping_board.tscn" id="11_onih3"]
 [ext_resource type="PackedScene" uid="uid://dhpuahkf1eolu" path="res://scenes/game_objects/customer.tscn" id="12_1wruk"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
+[ext_resource type="Texture2D" uid="uid://c4f8rgdgae1mn" path="res://sprites/stations/tablestation.png" id="16_spa1u"]
 [ext_resource type="Texture2D" uid="uid://e1265hkbfqi7" path="res://sprites/ui/recipe_text.png" id="18_2ianj"]
 [ext_resource type="Texture2D" uid="uid://bl0picvdrfjrh" path="res://sprites/ui/close.png" id="20_1tlve"]
 [ext_resource type="Texture2D" uid="uid://bbxoxfinwjiwp" path="res://sprites/ui/pause.png" id="20_onih3"]
@@ -102,6 +104,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../RecipeButton:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_p4glm"]
 resource_name = "open_scene"
@@ -173,6 +187,18 @@ tracks/5/path = NodePath("../PauseButton:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../RecipeButton:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 2.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
@@ -373,10 +399,30 @@ texture = ExtResource("4_k45mu")
 0:2/size_in_atlas = Vector2i(1, 2)
 0:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3p3yq"]
+texture = ExtResource("16_spa1u")
+margins = Vector2i(0, 9)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+6:1/0 = 0
+6:1/0/texture_origin = Vector2i(0, -1)
+6:1/0/y_sort_origin = 1
+7:1/0 = 0
+7:1/0/texture_origin = Vector2i(0, 2)
+7:1/0/y_sort_origin = 1
+
 [sub_resource type="TileSet" id="TileSet_l1pay"]
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_k45mu")
 sources/0 = SubResource("TileSetAtlasSource_twvrt")
+sources/2 = SubResource("TileSetAtlasSource_3p3yq")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onih3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -394,7 +440,7 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 y_sort_enabled = true
 script = ExtResource("2_twvrt")
 background_node = NodePath("Background")
-bg_textures = Array[Texture2D]([ExtResource("14_eda8h"), ExtResource("3_74ofu"), ExtResource("4_ao1si"), ExtResource("5_onih3")])
+bg_textures = Array[Texture2D]([ExtResource("14_eda8h"), ExtResource("3_74ofu"), ExtResource("4_ao1si"), ExtResource("5_onih3"), ExtResource("6_1tlve")])
 customer_controller = NodePath("CustomerController")
 
 [node name="SceneAnimation" type="AnimationPlayer" parent="."]
@@ -484,7 +530,7 @@ tile_set = SubResource("TileSet_l1pay")
 format = 2
 layer_0/name = "Stations"
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-3, 327680, 1, -65537, 393216, 0, -131070, 262144, 0, -131071, 65536, 0, -131068, 196608, 0)
+layer_0/tile_data = PackedInt32Array(-3, 327680, 1, -65537, 393216, 0, -131070, 262144, 0, -131071, 65536, 0, -131068, 196608, 0, 262141, 393218, 1, 196611, 458754, 1)
 layer_1/name = "Tables"
 layer_1/y_sort_enabled = true
 layer_1/tile_data = PackedInt32Array(196603, 196609, 3, 262139, 196609, 4, 262140, 262145, 4, 262141, 262145, 4, 262142, 262145, 4, 262143, 327681, 4, 196611, 262145, 4, 196610, 131073, 4, 196612, 262145, 4, 196613, 393217, 4, 131077, 393217, 3, -5, 131073, 2, 65531, 131073, 3, -65536, 65537, 2, -65535, 196609, 2, -65534, 196609, 2, -65533, 262145, 2, -65531, 327681, 2, 5, 327681, 3, -4, 393217, 2, -65532, 196609, 2)

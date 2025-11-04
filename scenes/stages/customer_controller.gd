@@ -8,7 +8,19 @@ class_name CustomerController
 
 @export var line_spacing := 18.0
 @export var customer_scene: PackedScene
-@export var menu_items: PackedStringArray = ["haddock", "chips", "fried_fish", "shortbread"]
+@export var menu_items: PackedStringArray = ["cullen_skink"
+											, "chips"
+											, "fried_fish"
+											, "shortbread"
+											, "cooked_haggis"
+											, "deep_fried_mars"
+											, "fish_and_chips"
+											, "cooked_haggis_neeps_and_tatties"
+											, "cooked_haggis_and_neeps"
+											, "cooked_haggis_and_tatties"
+											]
+
+@export var max_customers := 6 
 
 var left_queue: Array[Customer] = []
 var right_queue: Array[Customer] = []
@@ -16,7 +28,14 @@ var right_queue: Array[Customer] = []
 func _ready():
 	assert(customer_scene, "Assign a Customer scene to CustomerController.customer_scene")
 
+func _total_customers() -> int:
+	return left_queue.size() + right_queue.size()
+
 func spawn_customer() -> Customer:
+	# respect cap
+	if _total_customers() >= max_customers:
+		return null
+		
 	var c: Customer = customer_scene.instantiate()
 	get_tree().current_scene.add_child(c)
 	c.global_position = spawn_point.global_position
