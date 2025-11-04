@@ -35,8 +35,7 @@ func _check_start_recipe() -> void:
 		start_food_timer(recipe)
 	elif burnable: # no recipe, station can burn food
 		recipe = {
-			"ingredients": ["shortbread"],
-			"output": "burnt_food",
+			"output": "ash",
 			"time": 20.0
 		}
 		start_food_timer(recipe)
@@ -56,9 +55,11 @@ func _on_cook_finished() -> void:
 	print("child scale", child_scale)
 	for child in attachment_point.get_children():
 		child.free()
-	var result_scene = load("res://scenes/game_objects/food_objects/%s.tscn" % recipe["output"])
+	var result_scene = load("res://scenes/game_objects/food_objects/item.tscn")
 	var result_item = result_scene.instantiate()
 	result_item.scale = child_scale
+	result_item.item_name = recipe["output"]
+	result_item.update_texture()
 	attachment_point.add_child(result_item)
 	result_item.global_position = attachment_point.global_position
 	current_recipe = {}
