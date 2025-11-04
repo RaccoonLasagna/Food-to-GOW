@@ -21,7 +21,7 @@ var recipes = {
 			"time": 10.0
 		},
 		{
-			"ingredients": ["potato", "haddock"],
+			"ingredients": ["potato", "chopped_haddock"],
 			"output": "cullen_skink",
 			"time": 20.0
 		},

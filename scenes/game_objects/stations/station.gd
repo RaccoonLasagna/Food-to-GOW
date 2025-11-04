@@ -4,6 +4,7 @@ class_name Station
 @export var station_name: String
 @export var attachment_point: Node2D
 @export var max_attachment: int = 1
+@export var hint_point: Node2D
 
 func _ready():
 	add_to_group("stations")
@@ -22,3 +23,4 @@ func remove_item():
 
 func on_interact(_player: Node) -> void:
 	pass
+	

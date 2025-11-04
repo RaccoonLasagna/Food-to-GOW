@@ -2,7 +2,7 @@ extends Node2D
 class_name FoodObjects
 
 @export var item_name: String
-@onready var sprite: Sprite2D = $Sprite2D   # safer than exporting a ref
+@onready var sprite: Sprite2D = $Sprite2D
 
 const SHEET := preload("res://sprites/foods/foods.png")
 const HFRAMES := 7
@@ -14,7 +14,7 @@ const POS := {
 	"dough":             Vector2i(2, 0),
 	"mars":              Vector2i(3, 0),
 	"potato":            Vector2i(4, 0),
-	"tomatoes":          Vector2i(5, 0),
+	"chopped_haddock":   Vector2i(5, 0),
 	"turnip":            Vector2i(6, 0),
 	
 	"haddock":           Vector2i(0, 1),
@@ -22,8 +22,8 @@ const POS := {
 	"minced_pluck":      Vector2i(2, 1),
 	"ash":               Vector2i(3, 1),
 	"chopped_potato":    Vector2i(4, 1),
-	"chopped_tomato":    Vector2i(5, 1),
-	"cullen_skink":      Vector2i(6, 1),
+	"cullen_skink":    Vector2i(5, 1),
+	"chopped_turnips":      Vector2i(6, 1),
 
 	"deep_fried_mars":   Vector2i(0, 2),
 	"boiled_pluck":        Vector2i(1, 2),

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://riekgpx0f4as"]
+
+[ext_resource type="Script" uid="uid://cj1ma06gur0ad" path="res://key_hint.gd" id="1_8bdev"]
+
+[node name="KeyHint" type="VBoxContainer"]
+offset_right = 41.0
+offset_bottom = 40.0
+script = ExtResource("1_8bdev")

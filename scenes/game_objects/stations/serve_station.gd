@@ -16,6 +16,9 @@ func add_item(item: Node2D) -> void:
 		item.queue_free()             # consume food
 		await controller.exit_front_right()  # send customer away
 	else:
-		# wrong order; leave item or give feedback
-		item.modulate = Color.RED
+
+		var tween := create_tween()
+		tween.tween_property(item, "modulate", Color(1, 0, 0), 0.1)
+		tween.tween_property(item, "modulate", Color(1, 1, 1), 0.2)
+
 		pass

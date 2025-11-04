@@ -9,11 +9,12 @@ size = Vector2(81, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2x4p"]
 size = Vector2(102, 41)
 
-[node name="station" type="StaticBody2D" node_paths=PackedStringArray("attachment_point")]
+[node name="station" type="StaticBody2D" node_paths=PackedStringArray("attachment_point", "hint_point")]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("1_1pffa")
 station_name = "base_station"
 attachment_point = NodePath("attachment_point")
+hint_point = NodePath("hint_point")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -31,6 +32,11 @@ position = Vector2(0, -27.999992)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -30.5)
 shape = SubResource("RectangleShape2D_y2x4p")
+
+[node name="hint_point" type="Node2D" parent="."]
+z_index = 1
+position = Vector2(0, -72)
+scale = Vector2(0.99999994, 0.99999994)
 
 [node name="attachment_point" type="Node2D" parent="."]
 position = Vector2(0, -72)

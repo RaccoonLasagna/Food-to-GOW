@@ -56,3 +56,13 @@ func _on_exit_button_pressed() -> void:
 		$SceneAnimation.play("out_scene")
 		await $SceneAnimation.animation_finished
 	get_tree().change_scene_to_file("res://scenes/map.tscn")
+
+
+func _on_recipe_button_pressed() -> void:
+	$RecipeGroup.visible = true
+	$RecipeButton.visible = false
+
+
+func _on_close_button_pressed() -> void:
+	$RecipeGroup.visible = false
+	$RecipeButton.visible = true
