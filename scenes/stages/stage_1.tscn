@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=30 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
-[ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="2_8q8ih"]
-[ext_resource type="Script" path="res://scenes/stages/background.gd" id="2_twvrt"]
+[ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/background.gd" id="2_twvrt"]
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="3_8q8ih"]
 [ext_resource type="Texture2D" uid="uid://q33ekb0g8iq1" path="res://sprites/map/Scene2.png" id="3_74ofu"]
 [ext_resource type="Texture2D" uid="uid://wbropl03sglx" path="res://sprites/map/scene3.png" id="4_ao1si"]
@@ -11,14 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://be6ahs0a7vcw5" path="res://sprites/map/scene4.png" id="5_onih3"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
 [ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/food_objects/dough.tscn" id="6_relhn"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/food_objects/burnt_food.tscn" id="7_bjuw2"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/food_objects/shortbread.tscn" id="8_bjuw2"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/stations/oven.tscn" id="10_mm8bn"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/stations/pot.tscn" id="11_f2dxg"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/customer.tscn" id="12_1wruk"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/food_objects/potato.tscn" id="12_emlwg"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/food_objects/haddock.tscn" id="13_eda8h"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
 [ext_resource type="Texture2D" uid="uid://bbxoxfinwjiwp" path="res://sprites/ui/pause.png" id="20_onih3"]
 [ext_resource type="Texture2D" uid="uid://gvtcm5cn5dd5" path="res://sprites/ui/exit.png" id="21_gsa1y"]
@@ -436,36 +430,6 @@ texture = ExtResource("5_l1pay")
 visible = false
 z_index = 1
 texture = ExtResource("6_1tge3")
-
-[node name="item" parent="." instance=ExtResource("2_8q8ih")]
-position = Vector2(-54, 12.999999)
-
-[node name="dough" parent="." instance=ExtResource("6_relhn")]
-position = Vector2(-38.999996, 12.999999)
-
-[node name="shortbread" parent="." instance=ExtResource("8_bjuw2")]
-position = Vector2(-25.999998, 13.999999)
-
-[node name="burnt food" parent="." instance=ExtResource("7_bjuw2")]
-position = Vector2(-13.999999, 14.999999)
-
-[node name="potato" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-54.999996, 30.999998)
-
-[node name="potato2" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-48.000004, 38.999996)
-
-[node name="potato3" parent="." instance=ExtResource("12_emlwg")]
-position = Vector2(-34, 32.999996)
-
-[node name="haddock" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-21.999998, 32.999996)
-
-[node name="haddock2" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-11.000001, 39.000004)
-
-[node name="haddock3" parent="." instance=ExtResource("13_eda8h")]
-position = Vector2(-2.000001, 29)
 
 [node name="PauseButton" type="Button" parent="."]
 offset_left = -197.0
