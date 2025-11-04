@@ -4,14 +4,11 @@
 [ext_resource type="Script" uid="uid://csp42bu2mwoe" path="res://scenes/game_objects/stations/cooking_station.gd" id="2_j6b2m"]
 [ext_resource type="Texture2D" uid="uid://cgr8lk11ynunu" path="res://sprites/stations/cooking_indicator.png" id="3_gv7ap"]
 
-[node name="cooking_station" node_paths=PackedStringArray("timer_node", "progress_bar", "pb_left", "pb_mid", "pb_right") instance=ExtResource("1_o0tti")]
+[node name="cooking_station" node_paths=PackedStringArray("timer_node", "progress_bar") instance=ExtResource("1_o0tti")]
 script = ExtResource("2_j6b2m")
 burnable = false
 timer_node = NodePath("Timer")
 progress_bar = NodePath("progress_bar")
-pb_left = NodePath("progress_bar/left")
-pb_mid = NodePath("progress_bar/mid")
-pb_right = NodePath("progress_bar/right")
 station_name = "base_cooking_station"
 max_attachment = 3
 
@@ -22,22 +19,12 @@ debug_color = Color(1, 0, 0.8156863, 0.41960785)
 debug_color = Color(1, 0, 0.8156863, 0.41960785)
 
 [node name="progress_bar" type="Sprite2D" parent="." index="4"]
-texture_filter = 1
+visible = false
 position = Vector2(0, -199.99997)
 scale = Vector2(5.4999986, 5.4999986)
 texture = ExtResource("3_gv7ap")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 20)
-
-[node name="left" type="Node2D" parent="progress_bar" index="0"]
-position = Vector2(-1.8181818, -1.8181839)
-scale = Vector2(0.9999999, 0.9999999)
-
-[node name="mid" type="Node2D" parent="progress_bar" index="1"]
-position = Vector2(0, -1.8181856)
-
-[node name="right" type="Node2D" parent="progress_bar" index="2"]
-position = Vector2(1.8181821, -1.8181856)
 
 [node name="Timer" type="Timer" parent="." index="5"]
 one_shot = true

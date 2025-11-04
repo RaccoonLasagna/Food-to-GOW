@@ -1,15 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf285xaorlur1"]
+[gd_scene load_steps=5 format=3 uid="uid://bf285xaorlur1"]
 
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_cglgs"]
-[ext_resource type="Script" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
+[ext_resource type="Script" uid="uid://dblwfkb46f3ym" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
 [ext_resource type="Texture2D" uid="uid://dwbk30pys4oth" path="res://sprites/stations/fridge_menu_strip.png" id="2_lipl2"]
-[ext_resource type="Texture2D" uid="uid://cj3anuiovenq4" path="res://sprites/placeholders/potato.jpg" id="4_v0aem"]
-[ext_resource type="Texture2D" uid="uid://c4ke81jx6qijj" path="res://sprites/placeholders/haddock.jpg" id="5_jms56"]
-[ext_resource type="Texture2D" uid="uid://dyw8okytep0jj" path="res://sprites/placeholders/turnip.jpg" id="6_jh3aa"]
-[ext_resource type="Texture2D" uid="uid://c1pxi4r3lg1ox" path="res://sprites/placeholders/pluck.jpg" id="7_f7bb8"]
-[ext_resource type="Texture2D" uid="uid://sdhb0tv8xa6y" path="res://sprites/placeholders/ox_bung.jpg" id="8_4r4un"]
-[ext_resource type="Texture2D" uid="uid://d4lai7f4hgb4r" path="res://sprites/placeholders/dough.jpg" id="9_uupfr"]
-[ext_resource type="Texture2D" uid="uid://b6cwtf8qweeg8" path="res://sprites/placeholders/mars.png" id="10_jnpay"]
+[ext_resource type="Texture2D" uid="uid://bvhq4thx22fop" path="res://sprites/foods/foods.png" id="4_dxlly"]
 
 [node name="fridge" node_paths=PackedStringArray("selector") instance=ExtResource("1_cglgs")]
 script = ExtResource("2_7xs57")
@@ -28,35 +22,42 @@ region_rect = Rect2(0, 0, 113, 20.573357)
 
 [node name="Sprite2D" type="Sprite2D" parent="selector" index="0"]
 position = Vector2(-48, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("4_v0aem")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(64, 0, 16, 16)
 
 [node name="Sprite2D2" type="Sprite2D" parent="selector" index="1"]
 position = Vector2(-32, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("5_jms56")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(0, 16, 16, 16)
 
 [node name="Sprite2D3" type="Sprite2D" parent="selector" index="2"]
 position = Vector2(-16, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("6_jh3aa")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(96, 0, 16, 16)
 
 [node name="Sprite2D4" type="Sprite2D" parent="selector" index="3"]
 position = Vector2(0, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("7_f7bb8")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Sprite2D5" type="Sprite2D" parent="selector" index="4"]
 position = Vector2(16, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("8_4r4un")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
 
 [node name="Sprite2D6" type="Sprite2D" parent="selector" index="5"]
 position = Vector2(32, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("9_uupfr")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
 
 [node name="Sprite2D7" type="Sprite2D" parent="selector" index="6"]
 position = Vector2(48, -2.2)
-scale = Vector2(0.0649384, 0.06493835)
-texture = ExtResource("10_jnpay")
+texture = ExtResource("4_dxlly")
+region_enabled = true
+region_rect = Rect2(48, 0, 16, 16)

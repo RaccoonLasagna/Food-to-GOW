@@ -2,7 +2,7 @@ extends Node2D
 class_name FoodObjects
 
 @export var item_name: String
-@onready var sprite: Sprite2D = $Sprite2D   # safer than exporting a ref
+@export var sprite: Sprite2D
 
 const SHEET := preload("res://sprites/foods/foods.png")
 const HFRAMES := 7
