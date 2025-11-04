@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2lhqymw8hhqm"]
+
+[ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_cglgs"]
+
+[node name="fridge" instance=ExtResource("1_cglgs")]
+script = null
