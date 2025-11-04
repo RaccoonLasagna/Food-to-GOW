@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=29 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="Script" path="res://scenes/stages/background.gd" id="2_twvrt"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/stations/oven.tscn" id="10_mm8bn"]
 [ext_resource type="PackedScene" path="res://scenes/game_objects/stations/pot.tscn" id="11_f2dxg"]
-[ext_resource type="PackedScene" path="res://scenes/game_objects/customer.tscn" id="12_1wruk"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
 [ext_resource type="Texture2D" uid="uid://bbxoxfinwjiwp" path="res://sprites/ui/pause.png" id="20_onih3"]
 [ext_resource type="Texture2D" uid="uid://gvtcm5cn5dd5" path="res://sprites/ui/exit.png" id="21_gsa1y"]
@@ -416,10 +415,6 @@ layer_2/tile_data = PackedInt32Array(-65540, 196609, 1, -4, 262145, 0, 65532, 26
 
 [node name="player" parent="." instance=ExtResource("1_cuow7")]
 position = Vector2(0, 16)
-scale = Vector2(0.1, 0.1)
-
-[node name="customer" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-59.000004, 99)
 scale = Vector2(0.1, 0.1)
 
 [node name="TruckOutside" type="Sprite2D" parent="."]
