@@ -19,3 +19,6 @@ func add_item(item: Node2D) -> void:
 
 func remove_item():
 	print("an item has been removed")
+
+func on_interact(_player: Node) -> void:
+	pass

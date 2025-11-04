@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmtf3ecik05hi"]
+
+[ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_bj2q7"]
+[ext_resource type="Script" uid="uid://ds1xmtowwv6sf" path="res://scenes/game_objects/stations/serve_station.gd" id="2_bj2q7"]
+
+[node name="serve_station" instance=ExtResource("1_bj2q7")]
+script = ExtResource("2_bj2q7")
+station_name = "serve_station"
+
+[node name="CollisionShape2D" parent="." index="1"]
+debug_color = Color(1, 0, 0.8156863, 0.41960785)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(1, 0, 0.8156863, 0.41960785)

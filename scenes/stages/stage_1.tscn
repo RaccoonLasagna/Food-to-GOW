@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=37 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
-[ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/background.gd" id="2_twvrt"]
+[ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/stagemanager.gd" id="2_twvrt"]
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="3_8q8ih"]
 [ext_resource type="Texture2D" uid="uid://q33ekb0g8iq1" path="res://sprites/map/Scene2.png" id="3_74ofu"]
 [ext_resource type="Texture2D" uid="uid://wbropl03sglx" path="res://sprites/map/scene3.png" id="4_ao1si"]
@@ -19,8 +19,11 @@
 [ext_resource type="PackedScene" path="res://scenes/game_objects/customer.tscn" id="12_1wruk"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
 [ext_resource type="Texture2D" uid="uid://bbxoxfinwjiwp" path="res://sprites/ui/pause.png" id="20_onih3"]
+[ext_resource type="Script" uid="uid://bsm08p7a2dmhv" path="res://scenes/stages/customer_controller.gd" id="21_1wruk"]
 [ext_resource type="Texture2D" uid="uid://gvtcm5cn5dd5" path="res://sprites/ui/exit.png" id="21_gsa1y"]
 [ext_resource type="Texture2D" uid="uid://dfiilftitu7y1" path="res://sprites/ui/continue.png" id="21_guvgb"]
+[ext_resource type="PackedScene" uid="uid://dmtf3ecik05hi" path="res://scenes/game_objects/stations/serve_station.tscn" id="23_mtvsr"]
+[ext_resource type="PackedScene" uid="uid://suh1ax4tj4j8" path="res://scenes/game_objects/stations/order_station.tscn" id="24_45g45"]
 
 [sub_resource type="Animation" id="Animation_twvrt"]
 length = 0.001
@@ -58,7 +61,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, 2)]
+"values": [Vector2(3, 3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -358,11 +361,12 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mtvsr"]
 
-[node name="stage1" type="Node2D" node_paths=PackedStringArray("background_node")]
+[node name="stage1" type="Node2D" node_paths=PackedStringArray("background_node", "customer_controller")]
 y_sort_enabled = true
 script = ExtResource("2_twvrt")
 background_node = NodePath("Background")
 bg_textures = Array[Texture2D]([ExtResource("14_eda8h"), ExtResource("3_74ofu"), ExtResource("4_ao1si"), ExtResource("5_onih3")])
+customer_controller = NodePath("CustomerController")
 
 [node name="SceneAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../TruckOutside")
@@ -391,10 +395,6 @@ position = Vector2(88, 48)
 [node name="station9" parent="stations" instance=ExtResource("3_8q8ih")]
 z_index = 1
 position = Vector2(72, 64)
-
-[node name="station10" parent="stations" instance=ExtResource("3_8q8ih")]
-z_index = 1
-position = Vector2(56, 64)
 
 [node name="station11" parent="stations" instance=ExtResource("3_8q8ih")]
 z_index = 1
@@ -433,7 +433,7 @@ max_attachment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 process_callback = 0
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -452,10 +452,6 @@ layer_2/tile_data = PackedInt32Array(-65540, 196609, 1, -4, 262145, 0, 65532, 26
 
 [node name="player" parent="." instance=ExtResource("1_cuow7")]
 position = Vector2(0, 16)
-scale = Vector2(0.1, 0.1)
-
-[node name="customer" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-59.000004, 99)
 scale = Vector2(0.1, 0.1)
 
 [node name="TruckOutside" type="Sprite2D" parent="."]
@@ -514,25 +510,37 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1wruk")
 icon = ExtResource("21_guvgb")
 icon_alignment = 1
 
-[node name="customer3" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-83, 99)
+[node name="CustomerController" type="Node" parent="." node_paths=PackedStringArray("spawn_point", "left_line_anchor", "right_line_anchor", "exit_point")]
+script = ExtResource("21_1wruk")
+spawn_point = NodePath("../CustomerSpawnPoint")
+left_line_anchor = NodePath("../CustomerLeftLine")
+right_line_anchor = NodePath("../CustomrRightLine")
+exit_point = NodePath("../CustomerEndPoint")
+customer_scene = ExtResource("12_1wruk")
+
+[node name="serve_station" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("23_mtvsr")]
+position = Vector2(55.999992, 64)
+controller = NodePath("../CustomerController")
+
+[node name="order_station" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("24_45g45")]
+position = Vector2(-40, 64)
+controller = NodePath("../CustomerController")
+
+[node name="CustomrRightLine" type="Node2D" parent="."]
+position = Vector2(56, 88)
+scale = Vector2(0.00010000001, 0.00010000001)
+
+[node name="CustomerLeftLine" type="Node2D" parent="."]
+position = Vector2(-40.000015, 88)
+scale = Vector2(0.010000001, 0.010000001)
+
+[node name="CustomerSpawnPoint" type="Node2D" parent="."]
+position = Vector2(-208, 88)
 scale = Vector2(0.1, 0.1)
 
-[node name="customer2" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-35.000004, 99)
-scale = Vector2(0.1, 0.1)
-
-[node name="customer4" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(9.999992, 98)
-scale = Vector2(0.1, 0.1)
-
-[node name="customer5" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-11.000008, 101)
-scale = Vector2(0.1, 0.1)
-
-[node name="customer6" parent="." instance=ExtResource("12_1wruk")]
-position = Vector2(-114, 98)
-scale = Vector2(0.1, 0.1)
+[node name="CustomerEndPoint" type="Node2D" parent="."]
+position = Vector2(192.00006, 87.999985)
+scale = Vector2(0.010000001, 0.010000001)
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="CanvasGroup/ExitButton" to="." method="_on_exit_button_pressed"]

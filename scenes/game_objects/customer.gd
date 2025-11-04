@@ -1,6 +1,13 @@
 extends Node2D
+class_name Customer
 
 @export var anim_speed_scale: float = 1.0
+@export var speed := 120.0
+@export var icon_offset := Vector2(0, -180)
+@export var item_scene: PackedScene = preload("res://scenes/game_objects/food_objects/item.tscn")
+
+@export var desired_food: String = ""      # set by controller
+var order_icon: FoodObjects = null        
 
 @onready var outline: AnimatedSprite2D = $outline
 @onready var skin:    AnimatedSprite2D = $skin
@@ -9,13 +16,53 @@ extends Node2D
 @onready var shoes:   AnimatedSprite2D = $shoes
 @onready var hair:    AnimatedSprite2D = $hair
 
+var _target: Vector2
+var _arrive_epsilon := 2.0
+var state := "queue_left"  # "ordering", "queue_right", "serving", "exit"
+var _is_moving := false
 
 func _ready() -> void:
 	randomize()
 	_randomize_colors()
 	_play_all_synced()
 
+func set_order(food: String) -> void:
+	desired_food = food
 
+func _show_order_icon() -> void:
+	var item_name = desired_food
+	# Remove previous icon if any
+	if order_icon and is_instance_valid(order_icon):
+		order_icon.queue_free()
+
+	order_icon = item_scene.instantiate() as FoodObjects
+	order_icon.item_name = item_name
+	order_icon.sprite.scale = Vector2(50, 50)
+	order_icon.position = icon_offset
+	order_icon.z_index = 5
+	add_child(order_icon)
+
+func move_to(p: Vector2) -> void:
+	_target = p
+	
+func _process(delta: float) -> void:
+	var d := (_target - global_position)
+	var will_move := d.length() > _arrive_epsilon
+
+	if will_move != _is_moving:
+		_set_anim_playing(will_move)
+		_is_moving = will_move
+
+	if will_move:
+		global_position += d.normalized() * speed * delta
+
+func arrived() -> bool:
+	return global_position.distance_to(_target) <= _arrive_epsilon
+
+func hide_icon():
+	if order_icon:
+		order_icon.queue_free()
+		order_icon = null
 # --------------------------------------------
 # 🎨 Color randomization
 # --------------------------------------------
@@ -91,3 +138,21 @@ func _safe_play(sprite: AnimatedSprite2D, anim_name: String) -> void:
 func reroll() -> void:
 	_randomize_colors()
 	_play_all_synced()
+	
+func _set_anim_playing(moving: bool) -> void:
+	for s in [outline, skin, clothe, pant, shoes, hair]:
+		if s == null:
+			continue
+		if moving:
+			# only call if not already playing
+			if not s.is_playing():
+				s.speed_scale = anim_speed_scale
+				s.play()
+		else:
+			# stop and optionally snap to first frame
+			if s.is_playing():
+				s.stop()
+			# comment out the next line if you want to freeze on the current frame
+			s.frame = 0
+			# speed_scale doesn't matter when stopped, but set to 0 for clarity
+			s.speed_scale = 0.0

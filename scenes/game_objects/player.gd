@@ -55,7 +55,13 @@ func _physics_process(delta: float) -> void:
 			held_item.global_rotation_degrees = 0
 
 		if Input.is_action_just_pressed("interact"):
-			interact()
+#            interact with serve or order
+			var station = get_closest_station()
+			if station and station.name == "order_station":
+				station.on_interact(self)
+				print("line 63 player.gd interact order")
+			else:
+				interact()
 
 		if Input.is_action_just_pressed("use"):
 			var station = get_closest_station()
