@@ -1,242 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=16 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="PackedScene" uid="uid://dlmn3t1q6jbop" path="res://scenes/game_objects/food_objects/item.tscn" id="2_8q8ih"]
-[ext_resource type="Script" path="res://scenes/stages/background.gd" id="2_twvrt"]
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="3_8q8ih"]
 [ext_resource type="Texture2D" uid="uid://dabha8j7tg1s" path="res://sprites/map/Kitchen_tiles.png" id="4_k45mu"]
+[ext_resource type="PackedScene" uid="uid://cyfaqornb8a7g" path="res://scenes/game_objects/stations/bin.tscn" id="5_f2dxg"]
 [ext_resource type="Texture2D" uid="uid://388a36k4t7ht" path="res://sprites/truck/truck_outside.png" id="5_l1pay"]
 [ext_resource type="Texture2D" uid="uid://ou3jvd6chut5" path="res://sprites/stations/stations.png" id="5_p4glm"]
 [ext_resource type="Texture2D" uid="uid://bt7lilmda7v5g" path="res://sprites/truck/truck_side.png" id="6_1tge3"]
 [ext_resource type="PackedScene" uid="uid://d2lhqymw8hhqm" path="res://scenes/game_objects/stations/fridge.tscn" id="6_f2dxg"]
 [ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="9_bjuw2"]
-[ext_resource type="PackedScene" uid="uid://csxqoq1gy4jqc" path="res://scenes/game_objects/stations/chopping_board.tscn" id="10_mm8bn"]
+[ext_resource type="PackedScene" uid="uid://4s7nb1j0p88r" path="res://scenes/game_objects/stations/chopping_board.tscn" id="10_mm8bn"]
 [ext_resource type="Texture2D" uid="uid://bqmibof1e6up1" path="res://sprites/map/Scene1.png" id="14_eda8h"]
-[ext_resource type="Texture2D" uid="uid://bbxoxfinwjiwp" path="res://sprites/ui/pause.png" id="20_onih3"]
-[ext_resource type="Texture2D" uid="uid://gvtcm5cn5dd5" path="res://sprites/ui/exit.png" id="21_gsa1y"]
-[ext_resource type="Texture2D" uid="uid://dfiilftitu7y1" path="res://sprites/ui/continue.png" id="21_guvgb"]
-
-[sub_resource type="Animation" id="Animation_twvrt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-16, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../TileMap:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Camera2D:zoom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, 2)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TruckSide:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../player:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 16)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../PauseButton:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_p4glm"]
-resource_name = "open_scene"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(584, 16), Vector2(-16, 16)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../TileMap:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(600, 0), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Camera2D:zoom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.31, 1.31), Vector2(3, 3)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TruckSide:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../player:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(600, 16), Vector2(0, 16)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../PauseButton:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_74ofu"]
-resource_name = "out_scene"
-length = 2.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../TileMap:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(-600, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-16, 16), Vector2(-616, 16)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../player:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 16), Vector2(-600, 16)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("TruckSide:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Camera2D:zoom")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(3, 3), Vector2(1.31, 1.31)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e1cgd"]
-_data = {
-&"RESET": SubResource("Animation_twvrt"),
-&"open_scene": SubResource("Animation_p4glm"),
-&"out_scene": SubResource("Animation_74ofu")
-}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_twvrt"]
 texture = ExtResource("5_p4glm")
@@ -339,6 +114,7 @@ y_sort_enabled = true
 
 [node name="Scene1" type="Sprite2D" parent="."]
 z_index = -10
+position = Vector2(0, 36)
 texture = ExtResource("14_eda8h")
 
 [node name="stations" type="Node2D" parent="."]
@@ -347,22 +123,32 @@ texture = ExtResource("14_eda8h")
 position = Vector2(8, -16)
 
 [node name="station5" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(88, 4.5474736e-14)
-
-[node name="station2" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(24, -16)
-
-[node name="station3" parent="stations" instance=ExtResource("3_8q8ih")]
-position = Vector2(40, -16)
+position = Vector2(90, 3.3881318e-21)
 
 [node name="station6" parent="stations" instance=ExtResource("3_8q8ih")]
 position = Vector2(-55.99999, -16)
 
-[node name="oven" parent="stations" instance=ExtResource("10_mm8bn")]
-position = Vector2(55.999996, -15.999999)
+[node name="pot" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(72, -15.999999)
+station_name = "pot"
 
-[node name="pot" parent="stations" instance=ExtResource("11_f2dxg")]
-position = Vector2(72, -16)
+[node name="oven" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(55.999996, -15.999999)
+burnable = true
+station_name = "oven"
+max_attachment = 1
+
+[node name="deep_fryer" parent="stations" instance=ExtResource("9_bjuw2")]
+position = Vector2(23.999998, -15.999999)
+burnable = true
+station_name = "deep_fryer"
+max_attachment = 1
+
+[node name="chopping_board" parent="stations" instance=ExtResource("10_mm8bn")]
+position = Vector2(39.999996, -15.999996)
+
+[node name="bin" parent="stations" instance=ExtResource("5_f2dxg")]
+position = Vector2(-40.000004, -13)
 
 [node name="fridge" parent="stations" instance=ExtResource("6_f2dxg")]
 position = Vector2(-7.9999995, -14.999999)
@@ -398,54 +184,13 @@ position = Vector2(-16, 16)
 texture = ExtResource("6_1tge3")
 
 [node name="player" parent="." instance=ExtResource("1_cuow7")]
-position = Vector2(-20, 2.9999998)
+position = Vector2(-21, 1.9999999)
 scale = Vector2(0.1, 0.1)
-[node name="PauseButton" type="Button" parent="."]
-offset_left = -197.0
-offset_top = -97.0
-offset_right = -155.0
-offset_bottom = -59.0
-scale = Vector2(0.5, 0.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_onih3")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gsa1y")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1wruk")
-icon = ExtResource("20_onih3")
-icon_alignment = 1
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
-process_mode = 2
-visible = false
-z_index = 2
+[node name="item" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-28.999998, 35.999996)
+item_name = "fried_fish"
 
-[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
-offset_left = -476.0
-offset_top = -272.0
-offset_right = 476.0
-offset_bottom = 273.0
-color = Color(0, 0, 0, 0.3137255)
-
-[node name="ExitButton" type="Button" parent="CanvasGroup"]
-offset_left = -60.000004
-offset_top = -25.0
-offset_right = 55.999996
-offset_bottom = 24.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_1wruk")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_mtvsr")
-icon = ExtResource("21_gsa1y")
-icon_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="CanvasGroup"]
-offset_left = -197.0
-offset_top = -98.0
-offset_right = -155.0
-offset_bottom = -60.0
-scale = Vector2(0.5, 0.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_onih3")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_gsa1y")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_1wruk")
-icon = ExtResource("21_guvgb")
-icon_alignment = 1
-
-[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
-[connection signal="pressed" from="CanvasGroup/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="CanvasGroup/ContinueButton" to="." method="_on_continue_button_pressed"]
+[node name="item2" parent="." instance=ExtResource("2_8q8ih")]
+position = Vector2(-11, 36.000004)
+item_name = "chips"

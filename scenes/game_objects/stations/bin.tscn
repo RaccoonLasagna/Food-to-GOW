@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyfaqornb8a7g"]
+
+[ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_538mp"]
+[ext_resource type="Script" path="res://scenes/game_objects/stations/bin.gd" id="2_nflsg"]
+
+[node name="bin" instance=ExtResource("1_538mp")]
+script = ExtResource("2_nflsg")
+station_name = ""
+
+[node name="CollisionShape2D" parent="." index="1"]
+debug_color = Color(7.6407565e-07, 0.30617335, 0.07416689, 0.41960785)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(7.6407565e-07, 0.30617335, 0.07416689, 0.41960785)

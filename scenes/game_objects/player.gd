@@ -23,6 +23,8 @@ func _play_anim(name: String) -> void:
 		sprite.play(name)
 
 func _physics_process(delta: float) -> void:
+	print(held_item)
+
 	if fridge == null:
 		var input_dir = Vector2.ZERO
 		input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -59,7 +61,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("use"):
 			var station = get_closest_station()
 			if station and station.has_method("chop"):
-				station.chop()	
+				station.chop()
 	else:
 		if Input.is_action_just_pressed("left"):
 			fridge.previous()
@@ -126,6 +128,8 @@ func interact():
 					fridge = station
 					return
 		held_item = get_closest_interactable()
+		if !held_item:
+			return
 		var item_parent = held_item.get_parent()
 		if item_parent != get_parent(): # not the same parent = item in station
 			print("picking up item from station")
@@ -140,12 +144,36 @@ func interact():
 			sorted_stations.sort_custom(func(a, b):
 				return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
 			)
+			var recipe_manager = RecipeManager.new()
+			for station in sorted_stations:
+				if station.attachment_point.get_child_count() > 0:
+					var existing_item = station.attachment_point.get_child(0)
+					var recipe = recipe_manager.get_recipe_for(
+						"mix", [
+						existing_item.item_name.to_lower(),
+						held_item.item_name.to_lower()
+						]
+					)
+					if recipe.size() > 0:
+						var existing_scale = existing_item.scale
+						existing_item.free()
+						held_item.free()
+						var result_scene = load("res://scenes/game_objects/food_objects/item.tscn")
+						var result_item = result_scene.instantiate()
+						result_item.scale = existing_scale
+						result_item.item_name = recipe["output"]
+						result_item.update_texture()
+						station.attachment_point.add_child(result_item)
+						result_item.global_position = station.attachment_point.global_position
+						held_item = null
+						recipe_manager.queue_free()
+						return
 			for station in sorted_stations:
 				if station.can_place():
 					station.add_item(held_item)
 					held_item = null
-					break
-
-		else: # no stations, put it on the ground, maybe delete this
-			held_item.reparent(self.get_parent())
+					recipe_manager.queue_free()
+					return
+			recipe_manager.queue_free()
+		held_item.reparent(self.get_parent())
 		held_item = null

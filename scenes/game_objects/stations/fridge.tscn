@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://dwbk30pys4oth" path="res://sprites/stations/fridge_menu_strip.png" id="2_lipl2"]
 [ext_resource type="Texture2D" uid="uid://cj3anuiovenq4" path="res://sprites/placeholders/potato.jpg" id="4_v0aem"]
 [ext_resource type="Texture2D" uid="uid://c4ke81jx6qijj" path="res://sprites/placeholders/haddock.jpg" id="5_jms56"]
-[ext_resource type="Texture2D" uid="uid://dodyhiokfifm" path="res://sprites/placeholders/turnip.jpg" id="6_jh3aa"]
-[ext_resource type="Texture2D" uid="uid://cdo2b70rpml7b" path="res://sprites/placeholders/pluck.jpg" id="7_f7bb8"]
-[ext_resource type="Texture2D" uid="uid://dlykewqyv6y0f" path="res://sprites/placeholders/ox_bung.jpg" id="8_4r4un"]
+[ext_resource type="Texture2D" uid="uid://dyw8okytep0jj" path="res://sprites/placeholders/turnip.jpg" id="6_jh3aa"]
+[ext_resource type="Texture2D" uid="uid://c1pxi4r3lg1ox" path="res://sprites/placeholders/pluck.jpg" id="7_f7bb8"]
+[ext_resource type="Texture2D" uid="uid://sdhb0tv8xa6y" path="res://sprites/placeholders/ox_bung.jpg" id="8_4r4un"]
 [ext_resource type="Texture2D" uid="uid://d4lai7f4hgb4r" path="res://sprites/placeholders/dough.jpg" id="9_uupfr"]
-[ext_resource type="Texture2D" uid="uid://ddu1d06ki8dv4" path="res://sprites/placeholders/mars.png" id="10_jnpay"]
+[ext_resource type="Texture2D" uid="uid://b6cwtf8qweeg8" path="res://sprites/placeholders/mars.png" id="10_jnpay"]
 
 [node name="fridge" node_paths=PackedStringArray("selector") instance=ExtResource("1_cglgs")]
 script = ExtResource("2_7xs57")
@@ -20,7 +20,7 @@ max_attachment = 0
 [node name="selector" type="Sprite2D" parent="." index="4"]
 visible = false
 texture_filter = 1
-position = Vector2(367.12494, -252.5)
+position = Vector2(370, -250)
 scale = Vector2(6.749999, 6.749999)
 texture = ExtResource("2_lipl2")
 region_enabled = true

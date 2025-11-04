@@ -9,7 +9,7 @@ var stages = [null, "stage_1"]
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var poschange = false
 	if Input.is_action_pressed("right") and map_position < map_nodes.size() - 1:
 		map_position += 1
