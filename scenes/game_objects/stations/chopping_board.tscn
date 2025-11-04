@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://csxqoq1gy4jqc"]
+[gd_scene load_steps=4 format=3 uid="uid://bkknhwgql8blc"]
 
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_i3eec"]
 [ext_resource type="Script" uid="uid://c6e1plqqu3kxa" path="res://scenes/game_objects/stations/chopping_board.gd" id="2_6f6w5"]

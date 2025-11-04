@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8k4ggaydh62i"]
+[gd_scene load_steps=3 format=3 uid="uid://c25ni4pmgbi4g"]
 
 [ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="1_otrxi"]
 [ext_resource type="Texture2D" uid="uid://cwm57y11q8n6p" path="res://sprites/placeholders/pot.jpg" id="2_emuvr"]

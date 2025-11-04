@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://jk1gq7u5nltf"]
+[gd_scene load_steps=2 format=3 uid="uid://ueyucly8h4hg"]
 
 [ext_resource type="PackedScene" uid="uid://d1krcen2b33p4" path="res://scenes/game_objects/stations/cooking_station.tscn" id="1_3665v"]
 

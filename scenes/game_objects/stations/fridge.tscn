@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2lhqymw8hhqm"]
+[gd_scene load_steps=11 format=3 uid="uid://bf285xaorlur1"]
 
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_cglgs"]
-[ext_resource type="Script" uid="uid://dblwfkb46f3ym" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
+[ext_resource type="Script" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
 [ext_resource type="Texture2D" uid="uid://dwbk30pys4oth" path="res://sprites/stations/fridge_menu_strip.png" id="2_lipl2"]
 [ext_resource type="Texture2D" uid="uid://cj3anuiovenq4" path="res://sprites/placeholders/potato.jpg" id="4_v0aem"]
 [ext_resource type="Texture2D" uid="uid://c4ke81jx6qijj" path="res://sprites/placeholders/haddock.jpg" id="5_jms56"]

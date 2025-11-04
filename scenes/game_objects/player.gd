@@ -74,8 +74,10 @@ func _physics_process(delta: float) -> void:
 			var item_scene = load("res://scenes/game_objects/food_objects/item.tscn")
 			var new_item = item_scene.instantiate()
 			get_tree().current_scene.add_child(new_item)
+
 			new_item.item_name = ingredient_name
-			new_item.update_texture()
+			new_item.sprite.scale = Vector2(3, 3)
+			new_item._set_item_frame(ingredient_name)
 			new_item.reparent(attachment_point)
 			new_item.global_position = attachment_point.global_position
 			held_item = new_item
@@ -83,6 +85,7 @@ func _physics_process(delta: float) -> void:
 			fridge = null
 			print("taking out ", ingredient_name)
 			print("ingredient position ", new_item.global_position)
+
 
 
 func add_to_interactable(area: Area2D):
@@ -154,6 +157,7 @@ func interact():
 						held_item.item_name.to_lower()
 						]
 					)
+					# combine item
 					if recipe.size() > 0:
 						var existing_scale = existing_item.scale
 						existing_item.free()
@@ -162,7 +166,8 @@ func interact():
 						var result_item = result_scene.instantiate()
 						result_item.scale = existing_scale
 						result_item.item_name = recipe["output"]
-						result_item.update_texture()
+						result_item.sprite.scale = Vector2(3, 3)
+						result_item._set_item_frame(recipe["output"])
 						station.attachment_point.add_child(result_item)
 						result_item.global_position = station.attachment_point.global_position
 						held_item = null

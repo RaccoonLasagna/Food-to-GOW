@@ -53,7 +53,8 @@ func _finish_chopping() -> void:
 	var result_item = result_scene.instantiate()
 	result_item.scale = child_scale
 	result_item.item_name = current_recipe["output"]
-	result_item.update_texture()
+	result_item._set_item_frame(current_recipe["output"])
+	result_item.sprite.scale = Vector2(3, 3)
 	attachment_point.add_child(result_item)
 	result_item.global_position = attachment_point.global_position
 	current_item = result_item
