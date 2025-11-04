@@ -23,20 +23,23 @@ func _play_anim(name: String) -> void:
 		sprite.play(name)
 
 func _physics_process(delta: float) -> void:
-	var input_dir = Vector2.ZERO
-	input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	input_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	if input_dir != Vector2.ZERO:
-		input_dir = input_dir.normalized()
-		last_move_dir = input_dir
-		if abs(input_dir.x) > abs(input_dir.y):
-			_play_anim("walk_side")
-			sprite.flip_h = input_dir.x < 0
+	if !fridge:
+		var input_dir = Vector2.ZERO
+		input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+		input_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+
+		if input_dir != Vector2.ZERO:
+			input_dir = input_dir.normalized()
+			last_move_dir = input_dir
+			if abs(input_dir.x) > abs(input_dir.y):
+				_play_anim("walk_side")
+				sprite.flip_h = input_dir.x < 0
+			else:
+				_play_anim("walk_up" if input_dir.y < 0 else "walk_down")
 		else:
-			_play_anim("walk_up" if input_dir.y < 0 else "walk_down")
-	else:
-		_play_anim("idle")
-		
+			_play_anim("idle")
+		velocity = input_dir * move_speed * delta
+		move_and_slide()
 		if abs(last_move_dir.x) > abs(last_move_dir.y):
 			if last_move_dir.x > 0:
 				interact_area.rotation_degrees = 270
@@ -47,13 +50,13 @@ func _physics_process(delta: float) -> void:
 				interact_area.rotation_degrees = 0
 			else:
 				interact_area.rotation_degrees = 180
-		
+
 		if held_item:
 			held_item.global_rotation_degrees = 0
-	
+
 		if Input.is_action_just_pressed("interact"):
 			interact()
-		
+
 		if Input.is_action_just_pressed("use"):
 			var station = get_closest_station()
 			if station and station.has_method("chop"):
@@ -79,7 +82,8 @@ func _physics_process(delta: float) -> void:
 			fridge.toggle()
 			fridge = null
 			print("taking out ", ingredient_name)
-			print("ingredient position ",new_item.global_position)
+			print("ingredient position ", new_item.global_position)
+
 
 func add_to_interactable(area: Area2D):
 	var target_object = area.get_parent()
@@ -171,5 +175,5 @@ func interact():
 					recipe_manager.queue_free()
 					return
 			recipe_manager.queue_free()
-		held_item.reparent(self.get_parent())
-		held_item = null
+		#held_item.reparent(self.get_parent())
+		#held_item = null

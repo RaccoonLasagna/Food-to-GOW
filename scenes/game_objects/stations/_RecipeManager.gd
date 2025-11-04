@@ -6,7 +6,7 @@ var recipes = {
 		{
 			"ingredients": ["dough"],
 			"output": "shortbread",
-			"time": 1.0
+			"time": 10.0
 		},
 	],
 	"pot": [

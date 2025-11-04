@@ -14,7 +14,7 @@ func _ready() -> void:
 		var target_node = map_nodes[map_position]
 		player.global_position = target_node.global_position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not Global.started:
 		return
 		

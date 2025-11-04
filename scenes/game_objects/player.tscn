@@ -201,7 +201,7 @@ interact_area = NodePath("interact_area")
 attachment_point = NodePath("interact_area/attachment_point")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -58)
+position = Vector2(-6.9999995, -58)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_jqvdm")
 animation = &"walk_side"
@@ -216,7 +216,7 @@ shape = SubResource("CapsuleShape2D_ne3qo")
 position = Vector2(0, -94)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interact_area"]
-position = Vector2(0, 36.5)
+position = Vector2(0, 60)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="attachment_point" type="Node2D" parent="interact_area"]
