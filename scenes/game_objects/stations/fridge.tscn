@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf285xaorlur1"]
 
 [ext_resource type="PackedScene" uid="uid://dyika5mde3an4" path="res://scenes/game_objects/stations/station.tscn" id="1_cglgs"]
-[ext_resource type="Script" uid="uid://dblwfkb46f3ym" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
+[ext_resource type="Script" uid="uid://tcufsplxs4wt" path="res://scenes/game_objects/stations/fridge.gd" id="2_7xs57"]
 [ext_resource type="Texture2D" uid="uid://dwbk30pys4oth" path="res://sprites/stations/fridge_menu_strip.png" id="2_lipl2"]
 [ext_resource type="Texture2D" uid="uid://bvhq4thx22fop" path="res://sprites/foods/foods.png" id="4_dxlly"]
 
@@ -10,6 +10,14 @@ script = ExtResource("2_7xs57")
 selector = NodePath("selector")
 station_name = "fridge"
 max_attachment = 0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-2.9802322e-08, -20.000006)
+debug_color = Color(0.60842246, 0.68288463, 1, 0.41960785)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0.49999997, -32.000004)
+debug_color = Color(0.60842246, 0.68288463, 1, 0.41960785)
 
 [node name="selector" type="Sprite2D" parent="." index="4"]
 visible = false
@@ -61,3 +69,6 @@ position = Vector2(48, -2.2)
 texture = ExtResource("4_dxlly")
 region_enabled = true
 region_rect = Rect2(48, 0, 16, 16)
+
+[node name="literallyirrelevant" type="TileMap" parent="." index="6"]
+format = 2

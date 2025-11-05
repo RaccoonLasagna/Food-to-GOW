@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=44 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/stagemanager.gd" id="2_twvrt"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://gvtcm5cn5dd5" path="res://sprites/ui/exit.png" id="21_gsa1y"]
 [ext_resource type="Texture2D" uid="uid://dfiilftitu7y1" path="res://sprites/ui/continue.png" id="21_guvgb"]
 [ext_resource type="Texture2D" uid="uid://bqriwqlenq4ad" path="res://sprites/foods/recipe.png" id="21_spa1u"]
-[ext_resource type="Script" uid="uid://bfken0p7rtq72" path="res://scenes/stages/recipe_group.gd" id="22_3p3yq"]
 [ext_resource type="PackedScene" uid="uid://dmtf3ecik05hi" path="res://scenes/game_objects/stations/serve_station.tscn" id="23_mtvsr"]
 [ext_resource type="PackedScene" uid="uid://suh1ax4tj4j8" path="res://scenes/game_objects/stations/order_station.tscn" id="24_45g45"]
 
@@ -432,15 +431,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1wruk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3p3yq"]
-size = Vector2(16, 16)
-
-[sub_resource type="GDScript" id="GDScript_3p3yq"]
-script/source = "extends CollisionShape2D
-
-@export var change_text_to: String
-"
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wruk"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -587,18 +577,15 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_1wruk")
 icon = ExtResource("20_onih3")
 icon_alignment = 1
 
-[node name="RecipeGroup" type="CanvasGroup" parent="." node_paths=PackedStringArray("name_display", "hover_regions")]
+[node name="RecipeGroup" type="CanvasGroup" parent="."]
 visible = false
-z_index = 10
-script = ExtResource("22_3p3yq")
-name_display = NodePath("name_display")
-hover_regions = NodePath("hover_regions")
+z_index = 2
 
 [node name="ColorRect" type="ColorRect" parent="RecipeGroup"]
 offset_left = -144.0
-offset_top = -68.0
+offset_top = -64.0
 offset_right = 144.0
-offset_bottom = 92.0
+offset_bottom = 64.0
 
 [node name="CloseButton" type="Button" parent="RecipeGroup"]
 offset_left = 136.0
@@ -614,415 +601,6 @@ icon_alignment = 1
 
 [node name="Recipe" type="Sprite2D" parent="RecipeGroup"]
 texture = ExtResource("21_spa1u")
-
-[node name="name_display" type="Label" parent="RecipeGroup"]
-offset_left = -50.0
-offset_top = 67.0
-offset_right = 51.0
-offset_bottom = 90.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "Hover for Item Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="hover_regions" type="Area2D" parent="RecipeGroup"]
-
-[node name="mars" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(48, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mars Bar"
-
-[node name="mars3" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Shortbread Dough"
-
-[node name="mars4" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Shortbread Dough"
-
-[node name="mars5" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Shortbread"
-
-[node name="mars2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mars Bar"
-
-[node name="potato" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-48, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Potato"
-
-[node name="potato2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Potato"
-
-[node name="potato4" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Potato"
-
-[node name="potato5" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, 23)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cullen Skink"
-
-[node name="potato3" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Potato"
-
-[node name="haddock" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haddock"
-
-[node name="haddock2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haddock"
-
-[node name="haddock3" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haddock"
-
-[node name="turnip" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-16, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Turnip"
-
-[node name="turnip2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Turnip"
-
-[node name="pluck" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pluck"
-
-[node name="pluck2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pluck"
-
-[node name="pluck3" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cooked Pluck"
-
-[node name="pluck6" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cooked Pluck"
-
-[node name="pluck4" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Minced Pluck"
-
-[node name="pluck5" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Minced Pluck"
-
-[node name="ox_bung" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(16, -56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Ox Bung"
-
-[node name="imtiredofnaming" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pot"
-
-[node name="imtiredofnaming14" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pot"
-
-[node name="imtiredofnaming26" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pot"
-
-[node name="imtiredofnaming27" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, -9)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Boiled Turnip"
-
-[node name="imtiredofnaming29" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, 7)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Turnip"
-
-[node name="imtiredofnaming39" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Turnip"
-
-[node name="imtiredofnaming41" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, 56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Turnip"
-
-[node name="imtiredofnaming40" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haggis & Neeps"
-
-[node name="imtiredofnaming42" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, 56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haggis & Neeps"
-
-[node name="imtiredofnaming44" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, 57)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haggi, Neeps & Tatties"
-
-[node name="imtiredofnaming31" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Chopped Haddock"
-
-[node name="imtiredofnaming28" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Boiled Turnip"
-
-[node name="imtiredofnaming8" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Pot"
-
-[node name="imtiredofnaming2" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cutting Board"
-
-[node name="imtiredofnaming9" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cutting Board"
-
-[node name="imtiredofnaming16" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cutting Board"
-
-[node name="imtiredofnaming13" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Boiled Potato"
-
-[node name="imtiredofnaming17" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Potato"
-
-[node name="imtiredofnaming35" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Potato"
-
-[node name="imtiredofnaming43" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, 56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Mashed Potato"
-
-[node name="imtiredofnaming36" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haggis & Tatties"
-
-[node name="imtiredofnaming38" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, 56)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Haggis & Tatties"
-
-[node name="imtiredofnaming15" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Boiled Potato"
-
-[node name="imtiredofnaming11" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cutting Board"
-
-[node name="imtiredofnaming30" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cutting Board"
-
-[node name="imtiredofnaming18" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, -24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Deep Fryer"
-
-[node name="imtiredofnaming21" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Deep Fryer"
-
-[node name="imtiredofnaming24" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Chips"
-
-[node name="imtiredofnaming32" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(97, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Chips"
-
-[node name="imtiredofnaming22" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Deep Fryer"
-
-[node name="imtiredofnaming25" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Deep Fried Mars"
-
-[node name="imtiredofnaming23" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(0, 41)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Oven"
-
-[node name="imtiredofnaming19" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, -25)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Fried Haddock"
-
-[node name="imtiredofnaming33" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(64, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Fried Haddock"
-
-[node name="imtiredofnaming34" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, 39)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Fish & Chips"
-
-[node name="imtiredofnaming12" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(128, -41)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Chopped Haddock"
-
-[node name="imtiredofnaming10" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(32, -40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cut Potatoes"
-
-[node name="imtiredofnaming20" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-32, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cut Potatoes"
-
-[node name="imtiredofnaming3" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-96, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Ox Bung"
-
-[node name="imtiredofnaming4" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Raw Haggis"
-
-[node name="imtiredofnaming5" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, -8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Raw Haggis"
-
-[node name="imtiredofnaming6" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-64, 8)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cooked Haggis"
-
-[node name="imtiredofnaming7" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, 24)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cooked Haggis"
-
-[node name="imtiredofnaming37" type="CollisionShape2D" parent="RecipeGroup/hover_regions"]
-position = Vector2(-128, 40)
-shape = SubResource("RectangleShape2D_3p3yq")
-script = SubResource("GDScript_3p3yq")
-change_text_to = "Cooked Haggis"
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
 process_mode = 2
@@ -1097,6 +675,5 @@ scale = Vector2(0.27, 0.27)
 [connection signal="pressed" from="RecipeButton" to="." method="_on_recipe_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="RecipeGroup/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="mouse_entered" from="RecipeGroup/hover_regions" to="RecipeGroup" method="_on_hover_regions_mouse_entered"]
 [connection signal="pressed" from="CanvasGroup/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="CanvasGroup/ContinueButton" to="." method="_on_continue_button_pressed"]

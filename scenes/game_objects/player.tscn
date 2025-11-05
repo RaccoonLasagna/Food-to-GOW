@@ -380,7 +380,7 @@ size = Vector2(105, 199)
 script = ExtResource("1_onrkg")
 sprite = NodePath("AnimatedSprite2D")
 interact_area = NodePath("interact_area")
-attachment_point = NodePath("interact_area/attachment_point")
+attachment_point = NodePath("attachment_point")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -58)
@@ -401,5 +401,5 @@ position = Vector2(0, -94)
 position = Vector2(0, 60)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="attachment_point" type="Node2D" parent="interact_area"]
-position = Vector2(0, 62)
+[node name="attachment_point" type="Node2D" parent="."]
+position = Vector2(0, -32)
