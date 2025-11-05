@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://f7xjh55m6upr"]
+[gd_scene load_steps=47 format=3 uid="uid://f7xjh55m6upr"]
 
 [ext_resource type="PackedScene" uid="uid://2aqch0l3e2pa" path="res://scenes/game_objects/player.tscn" id="1_cuow7"]
 [ext_resource type="Script" uid="uid://dhmy03ee3j0pp" path="res://scenes/stages/stagemanager.gd" id="2_twvrt"]
@@ -327,18 +327,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [false, true]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("..:timer_start")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_74ofu"]
 resource_name = "out_scene"
@@ -411,6 +399,32 @@ _data = {
 &"out_scene": SubResource("Animation_74ofu")
 }
 
+[sub_resource type="GDScript" id="GDScript_2ianj"]
+script/source = "extends Station
+
+@export var selector: Sprite2D
+var index := 0
+var ingredients := [\"potato\", \"haddock\", \"turnip\", \"pluck\", \"ox_bung\", \"dough\", \"mars\"]
+
+func toggle():
+	if selector.visible:
+		selector.hide()
+		index = 0
+		selector.region_rect.position.y = 0
+	else:
+		selector.show()
+
+func next():
+	if index < 6:
+		index += 1
+		selector.region_rect.position.y += 32
+
+func previous():
+	if index > 0:
+		index -= 1
+		selector.region_rect.position.y -= 32
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onih3"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
@@ -441,15 +455,8 @@ customer_controller = NodePath("CustomerController")
 timer_label = NodePath("timer_label")
 
 [node name="timer_label" type="Label" parent="."]
-visible = false
-offset_left = -34.0
-offset_top = -95.0
-offset_right = 6.0
-offset_bottom = -72.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "hea"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -513,6 +520,10 @@ position = Vector2(55.999996, -15.999999)
 [node name="pot" parent="stations" instance=ExtResource("11_f2dxg")]
 position = Vector2(72, -15)
 
+[node name="fridge" parent="stations" instance=ExtResource("6_f2dxg")]
+position = Vector2(-7.9999995, -15.999999)
+script = SubResource("GDScript_2ianj")
+
 [node name="bin" parent="stations" instance=ExtResource("5_f2dxg")]
 position = Vector2(-39.999996, -12.999999)
 
@@ -536,9 +547,6 @@ position = Vector2(-55.999996, 64)
 [node name="station15" parent="stations" instance=ExtResource("3_8q8ih")]
 z_index = 1
 position = Vector2(-72, 48)
-
-[node name="fridge" parent="stations" instance=ExtResource("6_f2dxg")]
-position = Vector2(-7.9999995, -14.999999)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-8, 7)

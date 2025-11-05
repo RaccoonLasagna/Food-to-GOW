@@ -7,6 +7,7 @@ const HINT_RADIUS := 56.0
 @export var interact_area: Area2D	
 @export var attachment_point: Node2D
 @export var ui_hint: Node2D
+@export var interact_sfx: AudioStreamPlayer2D
 
 @export var keyhint_scene: PackedScene = preload("res://scenes/game_objects/stations/key_hint.tscn")
 
@@ -186,10 +187,8 @@ func interact():
 			item_parent.get_parent().remove_item(self)
 			
 		held_item.reparent(attachment_point)
-		
-		#_show_station_hint(item_parent.get_parent())
-			
 		held_item.global_position = attachment_point.global_position
+		interact_sfx.play()
 	else: # item: put it down on a station or floor
 		if !interactable_stations.is_empty():
 			var sorted_stations = interactable_stations.duplicate()
@@ -220,66 +219,20 @@ func interact():
 						result_item._set_item_frame(recipe["output"])
 						station.attachment_point.add_child(result_item)
 						result_item.global_position = station.attachment_point.global_position
+						interact_sfx.play()
 						held_item = null
 						recipe_manager.queue_free()
 						return
 			for station in sorted_stations:
 				if station.can_place():
 					station.add_item(held_item)
+					interact_sfx.play()
 					held_item = null
-					
-					#_show_station_hint(station)
-					
 					recipe_manager.queue_free()
 					return
 			recipe_manager.queue_free()
 		#held_item.reparent(self.get_parent())
 		#held_item = null
-
-#func _show_station_hint(station: Station) -> void:
-	#print("trying to show hint")
-	#if station == null or keyhint == null:
-		#return
-#
-	#var have_food_on_station := station.attachment_point.get_child_count() > 0
-	#var player_holding := held_item != null
-#
-	#if station.name == "order_station":
-		#keyhint.set_hint("Take Order", "interact")
-#
-	#elif station.name == "fridge" and fridge != null and not player_holding:
-		#keyhint.set_multi_hint([
-			#{"verb": "Get ingredients", "action": "interact"},
-			#{"verb": "cancel", "action": "use"},
-			#{"verb": "left", "action": "left"},
-			#{"verb": "right", "action": "right"},
-		#])
-#
-	#elif station.name == "fridge" and not player_holding:
-		#keyhint.set_hint("Get ingredients", "interact")
-#
-	#elif station.name == "chopping_board" and have_food_on_station and not player_holding:
-		#keyhint.set_multi_hint([
-			#{"verb": "Pick up", "action": "interact"},
-			#{"verb": "Chop", "action": "use"}
-		#])
-#
-	#else:
-		#if have_food_on_station and not player_holding:
-			#keyhint.set_hint("Pick up", "interact")
-		#elif player_holding and station.can_place():
-			#if station.name == "bin":
-				#keyhint.set_hint("Throw", "interact")
-			#elif station.name == "serve_station":
-				#keyhint.set_hint("Serve", "interact")
-			#else:
-				#keyhint.set_hint("Place", "interact")
-		#else:
-			#keyhint.hide_hint()
-#
-#func _hide_station_hint(_station: Station) -> void:
-	#if keyhint:
-		#keyhint.hide_hint()
 
 func _update_station_hint() -> void:
 	if keyhint == null:

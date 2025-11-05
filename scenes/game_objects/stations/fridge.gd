@@ -1,12 +1,14 @@
 extends Station
 
 @export var selector: Sprite2D
-@onready var tilemap: TileMap = self.get_parent().get_parent().get_child(0)
+@export var click: AudioStreamPlayer2D
+@export var interact: AudioStreamPlayer2D
 
 var index := 0
 var ingredients := ["potato", "haddock", "turnip", "pluck", "ox_bung", "dough", "mars"]
 
 func toggle():
+	interact.play()
 	if selector.visible: #close fridge
 		selector.hide()
 		index = 0
@@ -16,7 +18,7 @@ func toggle():
 		selector.show()
 
 func next():
-	print("tile: ", tilemap.local_to_map(position))
+	click.play()
 	if index < 6:
 		index += 1
 		selector.region_rect.position.y += 32
@@ -25,6 +27,7 @@ func next():
 		selector.region_rect.position.y = 0
 	
 func previous():
+	click.play()
 	if index > 0:
 		index -= 1
 		selector.region_rect.position.y -= 32
