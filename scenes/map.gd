@@ -22,6 +22,9 @@ func _ready() -> void:
 	update_label()
 	if Global.started:
 		$CanvasGroup.visible = false
+		$current_stage.visible = true
+		$SpaceImage.visible = true
+		$EnterText.visible = true
 		map_position = clamp(Global.player_position, 0, map_nodes.size() - 1)
 		actual_map_pos = _count_non_skip_up_to(map_position)
 		player.global_position = map_nodes[map_position].global_position
@@ -92,3 +95,6 @@ func _count_non_skip_up_to(idx: int) -> int:
 func _on_button_pressed() -> void:
 	$CanvasGroup.visible = false
 	Global.started = true
+	$current_stage.visible = true
+	$SpaceImage.visible = true
+	$EnterText.visible = true

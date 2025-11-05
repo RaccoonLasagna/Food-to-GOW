@@ -38,7 +38,7 @@ func add_hint(verb: String, action: String) -> void:
 		tex.custom_minimum_size = Vector2(48, 48)
 	var lbl := Label.new()
 	lbl.text = verb
-	lbl.add_theme_font_size_override("font_size", 30)
+	lbl.add_theme_font_size_override("font_size", 25)
 	lbl.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
 	lbl.add_theme_constant_override("outline_size", 10)  # try 2–6
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

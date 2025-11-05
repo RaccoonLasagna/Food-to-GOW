@@ -1,6 +1,8 @@
 extends Node
 class_name CustomerController
 
+signal customer_completed   # <— ADD THIS
+
 @export var spawn_point: Node2D
 @export var left_line_anchor: Node2D      # front of LEFT line
 @export var right_line_anchor: Node2D     # front of RIGHT line
@@ -8,17 +10,6 @@ class_name CustomerController
 
 @export var line_spacing := 18.0
 @export var customer_scene: PackedScene
-@export var menu_items: PackedStringArray = ["cullen_skink"
-											, "chips"
-											, "fried_fish"
-											, "shortbread"
-											, "cooked_haggis"
-											, "deep_fried_mars"
-											, "fish_and_chips"
-											, "cooked_haggis_neeps_and_tatties"
-											, "cooked_haggis_and_neeps"
-											, "cooked_haggis_and_tatties"
-											]
 
 @export var max_customers := 6 
 
@@ -41,7 +32,10 @@ func spawn_customer() -> Customer:
 	c.global_position = spawn_point.global_position
 	c.scale = Vector2(0.1, 0.1)
 	c.z_index = 2
-	c.set_order(Array(menu_items).pick_random())
+	
+	var available_recipes = _get_menu_items_for_map(Global.selected_map_index)
+	c.set_order(available_recipes.pick_random())
+
 	c.state = "queue_left"
 	left_queue.append(c)
 	_reflow_left()
@@ -89,4 +83,21 @@ func exit_front_right() -> void:
 	c.move_to(exit_point.global_position)
 	c.hide_icon()
 	await get_tree().create_timer(1.0).timeout
+	emit_signal("customer_completed")   # <— EMIT HERE
 	c.queue_free()
+
+func _get_menu_items_for_map(map_index: int) -> Array[String]:
+
+	var recipes_by_map = [
+		["shortbread", "deep_fried_mars", "mashed_potato"],                         
+		["chips", "fried_fish", "mashed_turnip"],                               
+		["cullen_skink"],                                                      
+		["fish_and_chips", "haggis", "cooked_haggis_and_neeps"],                                               
+		["cooked_haggis_neeps_and_tatties", "cooked_haggis_and_tatties"]                                        
+	]
+
+	var combined: Array[String] = []
+	for i in range(min(map_index + 1, recipes_by_map.size())):
+		combined.append_array(recipes_by_map[i])
+
+	return combined
