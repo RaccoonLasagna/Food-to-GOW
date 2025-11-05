@@ -33,12 +33,12 @@ func add_hint(verb: String, action: String) -> void:
 	tex.texture = icon_tex
 	tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	if action == "interact":
-		tex.custom_minimum_size = Vector2(64, 64)
+		tex.custom_minimum_size = Vector2(80, 80)
 	else:
-		tex.custom_minimum_size = Vector2(32, 32)
+		tex.custom_minimum_size = Vector2(48, 48)
 	var lbl := Label.new()
 	lbl.text = verb
-	lbl.add_theme_font_size_override("font_size", 20)
+	lbl.add_theme_font_size_override("font_size", 30)
 	lbl.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
 	lbl.add_theme_constant_override("outline_size", 10)  # try 2–6
 	lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
