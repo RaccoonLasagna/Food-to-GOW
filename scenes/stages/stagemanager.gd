@@ -3,10 +3,13 @@ extends Node2D
 @export var background_node: CanvasItem
 @export var bg_textures: Array[Texture2D] = []
 
-@export var customer_controller: Node  # set to your CustomerController node in the scene
+@export var customer_controller: Node
 @export var auto_spawn_customers := true
-@export var spawn_interval_sec := 6.0  # how often to spawn
+@export var spawn_interval_sec := 6.0 
+@export var timer_label: Label
+@export var timer_start = false
 
+var current_time: float
 var _spawn_timer: Timer
 
 func _ready() -> void:
@@ -19,6 +22,12 @@ func _ready() -> void:
 		_spawn_timer.one_shot = false
 		add_child(_spawn_timer)
 		_spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+
+func _process(delta: float) -> void:
+	if timer_start:
+		timer_label.visible = true
+		current_time += delta
+		update_timer_label()
 
 func _on_spawn_timer_timeout() -> void:
 	_spawn_one_customer()
@@ -68,3 +77,9 @@ func _on_recipe_button_pressed() -> void:
 func _on_close_button_pressed() -> void:
 	$RecipeGroup.visible = false
 	$RecipeButton.visible = true
+
+func update_timer_label():
+	var minutes = int(current_time) / 60
+	var seconds = int(current_time) % 60
+	var milliseconds = int((current_time - int(current_time)) * 100)
+	timer_label.text = "%02d:%02d:%02d" % [minutes, seconds, milliseconds]

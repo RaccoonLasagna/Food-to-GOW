@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm0t6i18a2men"]
+[gd_scene load_steps=9 format=3 uid="uid://cm0t6i18a2men"]
 
 [ext_resource type="Script" uid="uid://bgae6l0pehn4e" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="Texture2D" uid="uid://dnlnav6v0pke4" path="res://sprites/truck/smalltruck.png" id="2_0cso3"]
@@ -6,20 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://n7ccf7ta0pxk" path="res://sprites/map/pin.png" id="4_2lpho"]
 [ext_resource type="Texture2D" uid="uid://b18rg54ld077s" path="res://sprites/ui/logo.png" id="5_2klcf"]
 [ext_resource type="Texture2D" uid="uid://dsf6roiyfw4wo" path="res://sprites/ui/start.png" id="6_2lpho"]
-[ext_resource type="Texture2D" uid="uid://bt7045mhatmak" path="res://sprites/ui/map_arrows.png" id="7_nakos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lpho"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nakos"]
 
-[node name="Map" type="Node2D" node_paths=PackedStringArray("player", "map_nodes_group", "current_stage_label", "prev_stage_arrow", "next_stage_arrow")]
+[node name="Map" type="Node2D" node_paths=PackedStringArray("player", "map_nodes_group", "current_stage_label")]
 script = ExtResource("1_gldc4")
 player = NodePath("Player")
 map_nodes_group = NodePath("map_nodes")
 current_stage_label = NodePath("current_stage")
-prev_stage_arrow = NodePath("current_stage/previous_stage")
-next_stage_arrow = NodePath("current_stage/next_stage")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2(0.99999994, 1)
@@ -164,22 +161,8 @@ offset_right = 155.0
 offset_bottom = -186.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
-text = "a"
+text = "The Glasgow Necropolis"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="previous_stage" type="Sprite2D" parent="current_stage"]
-position = Vector2(0, 27)
-scale = Vector2(2, 2)
-texture = ExtResource("7_nakos")
-region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
-
-[node name="next_stage" type="Sprite2D" parent="current_stage"]
-position = Vector2(496, 27)
-scale = Vector2(2, 2)
-texture = ExtResource("7_nakos")
-region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
 
 [connection signal="pressed" from="CanvasGroup/StartButton" to="." method="_on_button_pressed"]

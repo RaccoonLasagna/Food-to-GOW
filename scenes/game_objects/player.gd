@@ -4,10 +4,14 @@ const HINT_RADIUS := 56.0
 
 @export var move_speed := 4000.0
 @export var sprite: AnimatedSprite2D
-@export var interact_area: Area2D
+@export var interact_area: Area2D	
 @export var attachment_point: Node2D
+@export var ui_hint: Node2D
+@export var interact_sfx: AudioStreamPlayer2D
 
 @export var keyhint_scene: PackedScene = preload("res://scenes/game_objects/stations/key_hint.tscn")
+
+var keyhint: KeyHint               
 
 var interactable_items: Array = []
 var interactable_stations: Array = []
@@ -21,14 +25,23 @@ func _ready() -> void:
 	interact_area.area_entered.connect(add_to_interactable)
 	interact_area.area_exited.connect(remove_from_interactable)
 	
+	keyhint = keyhint_scene.instantiate()
+	ui_hint.add_child(keyhint)
+	keyhint.global_position = ui_hint.global_position
+	keyhint.z_index = 10
+	#keyhint.rect_scale = Vector2(0.5, 0.5)
+	keyhint.hide_hint()
+	
 func _play_anim(name: String) -> void:
 	if _current_anim == name: return
 	_current_anim = name
 	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation(name):
 		sprite.play(name)
 
+func _process(delta: float) -> void:
+	_update_station_hint()
+
 func _physics_process(delta: float) -> void:
-	print(held_item)
 	if !fridge:
 		var input_dir = Vector2.ZERO
 		input_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -48,6 +61,7 @@ func _physics_process(delta: float) -> void:
 					_play_anim("walk_up_holding" if input_dir.y < 0 else "walk_down_holding")
 				else:
 					_play_anim("walk_up" if input_dir.y < 0 else "walk_down")
+			interact_area.rotation = last_move_dir.angle() - deg_to_rad(90)
 		else:
 			if held_item:
 				_play_anim("idle_holding")
@@ -86,7 +100,7 @@ func _physics_process(delta: float) -> void:
 			if station and station.has_method("chop"):
 				station.chop()
 	else:
-		_show_station_hint(fridge)
+		#_show_station_hint(fridge)
 		
 		if Input.is_action_just_pressed("left"):
 			fridge.previous()
@@ -108,7 +122,7 @@ func _physics_process(delta: float) -> void:
 			new_item.global_position = attachment_point.global_position
 			held_item = new_item
 			
-			_show_station_hint(fridge)
+			#_show_station_hint(fridge)
 			
 			fridge.toggle()
 			fridge = null
@@ -124,7 +138,7 @@ func add_to_interactable(area: Area2D):
 	if target_object.is_in_group("stations"):
 		interactable_stations.append(target_object)
 		# -------- HINT ON ENTER (base_station only) --------
-		_show_station_hint(target_object)
+		#_show_station_hint(target_object)
 
 func remove_from_interactable(area: Area2D):
 	var target_object = area.get_parent()
@@ -133,7 +147,7 @@ func remove_from_interactable(area: Area2D):
 	if target_object.is_in_group("stations"):
 		interactable_stations.erase(target_object)
 		# -------- HINT OFF ON EXIT (base_station only) -----
-		_hide_station_hint(target_object)
+		#_hide_station_hint(target_object)
 
 func get_closest_interactable() -> Node2D:
 	var closest_item: Node2D = null
@@ -173,10 +187,8 @@ func interact():
 			item_parent.get_parent().remove_item(self)
 			
 		held_item.reparent(attachment_point)
-		
-		_show_station_hint(item_parent.get_parent())
-			
 		held_item.global_position = attachment_point.global_position
+		interact_sfx.play()
 	else: # item: put it down on a station or floor
 		if !interactable_stations.is_empty():
 			var sorted_stations = interactable_stations.duplicate()
@@ -207,68 +219,75 @@ func interact():
 						result_item._set_item_frame(recipe["output"])
 						station.attachment_point.add_child(result_item)
 						result_item.global_position = station.attachment_point.global_position
+						interact_sfx.play()
 						held_item = null
 						recipe_manager.queue_free()
 						return
 			for station in sorted_stations:
 				if station.can_place():
 					station.add_item(held_item)
+					interact_sfx.play()
 					held_item = null
-					
-					_show_station_hint(station)
-					
 					recipe_manager.queue_free()
 					return
 			recipe_manager.queue_free()
 		#held_item.reparent(self.get_parent())
 		#held_item = null
-		
-# Spawns/updates a KeyHint as a child of the station's attachment_point
-func _show_station_hint(station: Station) -> void:
-	if station == null or station.hint_point == null:
+
+func _update_station_hint() -> void:
+	if keyhint == null:
 		return
 
-	var hint := station.hint_point.get_node_or_null("AttachmentHint")
-	if hint == null:
-		hint = keyhint_scene.instantiate()
-		hint.name = "AttachmentHint"
-		station.hint_point.add_child(hint)
+	var closest_station := get_closest_station()
+	if closest_station == null:
+		keyhint.hide_hint()
+		return
 
-		hint.position = Vector2(-70, 0)
-	#if station.name.to_lower().begins_with("station"):
-	var have_food_on_station := station.attachment_point.get_child_count() > 0
-	var player_holding := held_item != null
-	
-	if station.name == "order_station":
-		hint.set_hint("Take Order", "interact")
-	elif station.name == "fridge" and fridge != null and not player_holding:
-		hint.set_multi_hint([
+	var have_food = closest_station.attachment_point.get_child_count() > 0
+	var holding := held_item != null
+	var can_mix := false
+
+	# Check if mixing is possible
+	if holding and have_food:
+		var existing_item = closest_station.attachment_point.get_child(0)
+		var recipe_manager := RecipeManager.new()
+		var recipe := recipe_manager.get_recipe_for(
+			"mix",
+			[existing_item.item_name.to_lower(), held_item.item_name.to_lower()]
+		)
+		can_mix = recipe.size() > 0
+		recipe_manager.queue_free()
+
+	# Determine hint text/actions
+	if closest_station.name == "order_station":
+		keyhint.set_hint("Take Order", "interact")
+	elif closest_station.name == "fridge" and fridge != null and not holding:
+		keyhint.set_multi_hint([
 			{"verb": "Get ingredients", "action": "interact"},
+			{"verb": "cancel", "action": "use"},
 			{"verb": "left", "action": "left"},
 			{"verb": "right", "action": "right"},
 		])
-	elif station.name == "fridge" and not player_holding:
-		hint.set_hint("Get ingredients", "interact")
-	elif station.name == "chopping_board" and have_food_on_station and not player_holding:
-		hint.set_multi_hint([
+	elif closest_station.name == "fridge" and not holding:
+		keyhint.set_hint("Get ingredients", "interact")
+	elif closest_station.name == "chopping_board" and have_food and not holding:
+		keyhint.set_multi_hint([
 			{"verb": "Pick up", "action": "interact"},
-			{"verb": "Chop", "action": "use"}
+			{"verb": "Chop", "action": "use"},
 		])
+	elif can_mix:
+			keyhint.set_hint("Mix", "interact")
 	else:
-		if have_food_on_station and not player_holding:
-			hint.set_hint("Pick up", "interact")
-		elif player_holding and station.can_place():
-			if station.name == "bin":
-				hint.set_hint("Throw", "interact")
-			elif station.name == "serve_station":
-				hint.set_hint("Serve", "interact")
-			else:
-				hint.set_hint("Place", "interact")
+		if have_food and not holding:
+			keyhint.set_hint("Pick up", "interact")
+		elif holding and closest_station.can_place():
+			match closest_station.name:
+				"bin":
+					keyhint.set_hint("Throw", "interact")
+				"serve_station":
+					keyhint.set_hint("Serve", "interact")
+				_:
+					keyhint.set_hint("Place", "interact")
 		else:
-			hint.hide_hint()
-
-func _hide_station_hint(station: Station) -> void:
-	if station and station.hint_point:
-		var hint := station.hint_point.get_node_or_null("AttachmentHint")
-		if hint:
-			hint.queue_free()
+			keyhint.hide_hint()	
+	keyhint.global_position = ui_hint.global_position
