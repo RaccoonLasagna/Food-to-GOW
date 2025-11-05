@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cm0t6i18a2men"]
+[gd_scene load_steps=13 format=3 uid="uid://cm0t6i18a2men"]
 
 [ext_resource type="Script" uid="uid://bgae6l0pehn4e" path="res://scenes/map.gd" id="1_gldc4"]
 [ext_resource type="Texture2D" uid="uid://dnlnav6v0pke4" path="res://sprites/truck/smalltruck.png" id="2_0cso3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://b18rg54ld077s" path="res://sprites/ui/logo.png" id="5_2klcf"]
 [ext_resource type="Texture2D" uid="uid://dsf6roiyfw4wo" path="res://sprites/ui/start.png" id="6_2lpho"]
 [ext_resource type="Texture2D" uid="uid://bt7045mhatmak" path="res://sprites/ui/map_arrows.png" id="7_nakos"]
+[ext_resource type="Texture2D" uid="uid://b6a04jtk74eqq" path="res://sprites/ui/a.png" id="8_be0no"]
+[ext_resource type="Texture2D" uid="uid://w5hx5msx5euj" path="res://sprites/ui/d.png" id="9_blm8a"]
+[ext_resource type="Texture2D" uid="uid://6jd12pb1rv1n" path="res://sprites/ui/space.png" id="10_blm8a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lpho"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -169,17 +172,41 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="previous_stage" type="Sprite2D" parent="current_stage"]
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 27)
 scale = Vector2(2, 2)
 texture = ExtResource("7_nakos")
 region_enabled = true
-region_rect = Rect2(0, 0, 32, 32)
+region_rect = Rect2(17, 0, 16, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="current_stage/previous_stage"]
+position = Vector2(-16.5, 0)
+texture = ExtResource("8_be0no")
 
 [node name="next_stage" type="Sprite2D" parent="current_stage"]
+self_modulate = Color(0, 0, 0, 1)
 position = Vector2(496, 27)
 scale = Vector2(2, 2)
 texture = ExtResource("7_nakos")
 region_enabled = true
-region_rect = Rect2(32, 0, 32, 32)
+region_rect = Rect2(32, 0, 15, 32)
+
+[node name="Sprite2D" type="Sprite2D" parent="current_stage/next_stage"]
+position = Vector2(16, 0)
+texture = ExtResource("9_blm8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-115.99999, 206)
+scale = Vector2(5, 5)
+texture = ExtResource("10_blm8a")
+
+[node name="Label7" type="Label" parent="."]
+offset_left = -32.0
+offset_top = 190.99998
+offset_right = 171.0
+offset_bottom = 232.99998
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "to Enter Stage"
 
 [connection signal="pressed" from="CanvasGroup/StartButton" to="." method="_on_button_pressed"]
