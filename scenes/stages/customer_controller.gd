@@ -89,10 +89,10 @@ func exit_front_right() -> void:
 func _get_menu_items_for_map(map_index: int) -> Array[String]:
 
 	var recipes_by_map = [
-		["shortbread", "deep_fried_mars", "mashed_potato"],                         
-		["chips", "fried_fish", "mashed_turnip"],                               
-		["cullen_skink"],                                                      
-		["fish_and_chips", "haggis", "cooked_haggis_and_neeps"],                                               
+		["shortbread", "deep_fried_mars", "tatties"],                         
+		["chips", "fried_fish"],                               
+		["cullen_skink", "neeps"],                                                      
+		["fish_and_chips", "cooked_haggis", "cooked_haggis_and_neeps"],                                               
 		["cooked_haggis_neeps_and_tatties", "cooked_haggis_and_tatties"]                                        
 	]
 

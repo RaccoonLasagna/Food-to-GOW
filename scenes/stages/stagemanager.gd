@@ -9,7 +9,7 @@ extends Node2D
 @export var timer_label: Label
 @export var timer_start = false
 
-@export var target_customers := 3
+@export var target_customers := 20
 
 var current_time: float = 0.0
 var _spawn_timer: Timer
